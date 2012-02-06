@@ -65,6 +65,7 @@ class Application_Model_User extends Application_Model_Base
         $data = $this->_filterData($data);
 
         if (isset($data['id']) && (int)$data['id']) {
+            unset($data['username']);
             $this->getDbTable()->update($data, array('id = ?' => $data['id']));
         } else {
             $this->getDbTable()->insert($data);
@@ -81,7 +82,7 @@ class Application_Model_User extends Application_Model_Base
 
     protected function _hashPass($salt, $pass)
     {
-        return sha1($salt . $pass);
+        return sha1($pass . $salt);
     }
 
     protected function _generateSalt()
@@ -113,7 +114,7 @@ class Application_Model_User extends Application_Model_Base
                     break;
                 case 'password':
                     $result['salt'] = $this->_generateSalt();
-                    $result['password'] = $this->_hashPass($data['salt'], $value);
+                    $result['password'] = $this->_hashPass($result['salt'], $value);
                     break;
             }
         }

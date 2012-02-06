@@ -19,4 +19,16 @@
             <span>Menus</span>
         </a>
     </li>
+    <li>
+        <a href="<?php echo $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
+            <span>Users</span>
+        </a>
+    </li>
+    <?php if (Zend_Auth::getInstance()->getIdentity()->id == 1): ?>
+    <li>
+        <a href="<?php echo $this->url(array('module' => 'log', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
+            <span>Logs</span>
+        </a>
+    </li>
+    <?php endif; ?>
 </ul>

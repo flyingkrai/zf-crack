@@ -1,4 +1,21 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>delete</b></p>
-</div>
+<!-- LINKS -->
+<?php print $this->partial('partials/links.phtml', array('totalUsers' => $this->totalUsers)); ?>
+<!-- /LINKS -->
+
+<h3>
+    Deseja deletar a página
+    <small><i>
+        &OpenCurlyDoubleQuote;<?php print $this->escape($this->user->name); ?>&CloseCurlyDoubleQuote;
+    </i></small>
+    ?
+</h3>
+<p>
+    <a class="ico-done"
+       href="<?php print $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'delete', 'id' => $this->user->id, 'confirm' => true), 'admin', true); ?>">
+        Confirmar
+    </a>
+    <a class="ico-delete"
+       href="<?php print $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'index'), 'admin', true); ?>">
+        Sair
+    </a>
+</p>

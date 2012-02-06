@@ -71,6 +71,11 @@ HTML;
         foreach ($data as $key => $value) {
             $html = str_replace('{' . $key . '}', $value, $html);
         }
+        var_dump($html);
+        var_dump(APPLICATION_PATH . '/layouts/scripts/front/_opengraph.phtml');
+        exit;
+
+
         @file_put_contents(APPLICATION_PATH . '/layouts/scripts/front/_opengraph.phtml', $html);
     }
 

@@ -1,4 +1,7 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>new</b></p>
-</div>
+<!-- LINKS -->
+<?php print $this->partial('partials/links.phtml', array('totalUsers' => $this->totalUsers)); ?>
+<!-- /LINKS -->
+
+<!-- FORM -->
+<?php print $this->partial('partials/form.phtml', array('form' => $this->form, 'legend' => 'Novo Usuário')); ?>
+<!-- /FORM -->

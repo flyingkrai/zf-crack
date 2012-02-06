@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * @author Davi Alves
+ */
 class Page_IndexController extends Zend_Controller_Action
 {
+
+    /**
+     * @var Application_Model_Page
+     */
+    protected $model;
 
     public function init()
     {
@@ -46,6 +54,8 @@ class Page_IndexController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $this->view->title .= " - Editar";
+
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
@@ -85,6 +95,8 @@ class Page_IndexController extends Zend_Controller_Action
 
     public function deleteAction()
     {
+        $this->view->title .= " - Deletar";
+
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
