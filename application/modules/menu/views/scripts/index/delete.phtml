@@ -1,0 +1,17 @@
+<!-- LINKS -->
+<?php print $this->partial('partials/links.phtml', array('totalMenus' => $this->totalMenus)); ?>
+<!-- /LINKS -->
+
+<h3>Deseja deletar a menu
+    <small><i>&OpenCurlyDoubleQuote;<?php print $this->escape($this->menu->title); ?>&CloseCurlyDoubleQuote;</i></small>
+    ?
+</h3>
+<p>
+    <a class="ico-done"
+       href="<?php print $this->url(array('module' => 'menu', 'controller' => 'Index', 'action' => 'delete', 'id' => $this->menu->id, 'confirm' => true), 'admin', true); ?>">
+        Confirmar
+    </a>
+    <a class="ico-delete" href="<?php print $this->url(array('module' => 'menu', 'controller' => 'Index', 'action' => 'index'), 'admin', true); ?>">
+        Sair
+    </a>
+</p>

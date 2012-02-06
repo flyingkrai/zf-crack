@@ -1,0 +1,27 @@
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a href="<?php echo $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">Listar</a> (<?php print $this->totalEvents; ?>)</dt>
+            <dd>Lista de eventos cadastrados</dd>
+        </dl>
+    </div> <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a href="<?php echo $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'new'), 'admin', true) ?>">Novo</a></dt>
+            <dd>Cadastrar novo evento</dd>
+        </dl>
+    </div> <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
+<!-- /btn-box -->
+<div class="fix"></div>
+<br/>

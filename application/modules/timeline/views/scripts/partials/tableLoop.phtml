@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('table').tablesorter({
+            sortList:[
+                [0, 0]
+            ],
+            widgets:['zebra'],
+            headers:{
+                1:{
+                    sorter:false
+                },
+                3:{
+                    sorter:false
+                },
+                5:{
+                    sorter:false
+                }
+            }
+        });
+    });
+</script>
+
+<div id="div-table">
+    <table class="tablesorter" style="width: 100%;">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Título</th>
+            <th>Link</th>
+            <th>Texto</th>
+            <th>Data</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach ($this->timelines as $menu): ?>
+        <tr>
+            <td><?php print (int)$menu->id; ?></td>
+            <td><?php print $this->escape($menu->title); ?></td>
+            <td><?php print $this->escape($menu->link); ?></td>
+            <td><?php print $this->truncate($menu->content); ?></td>
+            <td><?php print $this->dateToBr($menu->date); ?></td>
+            <td width="10%" style="text-align: center;">
+                <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'edit', 'id' => $menu->id), 'admin', true); ?>"
+                   style="margin-right: 10px" title="Editar">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-edit.gif'); ?>"/>
+                </a>
+                <a href=" <?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'delete', 'id' => $menu->id), 'admin', true); ?>"
+                   style="margin-right: 10px" title="Deletar">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-delete.gif');?>"/>
+                </a>
+                <?php if ($menu->image): ?>
+                <a href="<?php print UPLOAD_URL . $menu->image; ?>" style="margin-right: 10px" target="_blank"
+                   title="Ver Imagem">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-image.gif');?>"/>
+                </a>
+                <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'image', 'id' => $menu->id), 'admin', true); ?>"
+                   title="Remover Imagem">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-image-delete.gif');?>"/>
+                </a>
+                <?php endif; ?>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php if (!$this->timelines): ?>
+        <tr>
+            <td colspan="6">Nenhuma evento cadastrado.</td>
+        </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>

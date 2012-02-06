@@ -1,0 +1,22 @@
+<ul class="box">
+    <li>
+        <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'Index', 'action' => 'index'), 'adminDashboard', true) ?>">
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
+            <span>Timeline</span>
+        </a>
+    </li>
+    <!--<li>
+        <a href="<?php #echo $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
+            <span>Páginas</span>
+        </a>
+    </li>-->
+    <li>
+        <a href="<?php echo $this->url(array('module' => 'menu', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
+            <span>Menus</span>
+        </a>
+    </li>
+</ul>

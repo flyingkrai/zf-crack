@@ -1,0 +1,19 @@
+<!-- LINKS -->
+<?php print $this->partial('partials/links.phtml', array('totalEvents' => $this->totalEvents)); ?>
+<!-- /LINKS -->
+
+<h3>Deseja remover a imagem do evento
+    <small><i>&OpenCurlyDoubleQuote;<?php print $this->escape($this->timeline->title); ?>&CloseCurlyDoubleQuote;</i>
+    </small>
+    ?
+</h3>
+<p>
+    <a class="ico-done"
+       href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'image', 'id' => $this->timeline->id, 'confirm' => true), 'admin', true); ?>">
+        Confirmar
+    </a>
+    <a class="ico-delete"
+       href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'index'), 'admin', true); ?>">
+        Sair
+    </a>
+</p>

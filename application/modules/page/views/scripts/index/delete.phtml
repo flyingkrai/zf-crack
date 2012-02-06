@@ -1,0 +1,21 @@
+<!-- LINKS -->
+<?php print $this->partial('partials/links.phtml', array('totalPages' => $this->totalPages)); ?>
+<!-- /LINKS -->
+
+<h3>
+    Deseja deletar a página
+    <small><i>
+        &OpenCurlyDoubleQuote;<?php print $this->escape($this->page->title); ?>&CloseCurlyDoubleQuote;
+    </i></small>
+    ?
+</h3>
+<p>
+    <a class="ico-done"
+       href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'delete', 'id' => $this->page->id, 'confirm' => true), 'admin', true); ?>">
+        Confirmar
+    </a>
+    <a class="ico-delete"
+       href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'index'), 'admin', true); ?>">
+        Sair
+    </a>
+</p>

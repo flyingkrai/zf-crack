@@ -1,0 +1,72 @@
+<!doctype html>  
+
+<!--[if lt IE 7 ]> <html lang="pt-br" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="pt-br" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="pt-br" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="pt-br" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="pt-br" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+        <meta name="description" content="">
+        <meta name="author" content="Index Comunicação Digital / www.indexdigital.com.br">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- FACEBOK OPENGRAPH -->
+        <?php print $this->render('front/_opengraph.phtml'); ?>
+        <!-- FACEBOK OPENGRAPH -->
+
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink(); ?>
+        <?php echo $this->headScript(); ?>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+            _gaq.push(['_trackPageview']);
+	
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async =
+                    true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+                    '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+        <?php print $this->render('front/_jangabar.phtml'); ?>
+        <div id="container">
+            <header>
+                <div class="header-cont">
+                    <h1 class="crack"><a class="ir ico" href="#" title="Crack no Ceará: Uma epidemia">Crack no Ceará: Uma epidemia</a></h1>
+                    <div class="clear"></div>
+                </div>
+            </header>
+
+            <?php print $this->partial('front/_menu.phtml', array('menus' => $this->menus)); ?>
+
+            <div id="main">
+                <div class="main-cont">
+                    <?php print $this->partial('front/_timeline.phtml', array('timeline' => $this->timeline)); ?>
+                </div>
+                <div class="clear"></div>
+            </div><!-- CONTAINER 12 -->
+        </div><!-- MAIN -->
+
+        <footer>
+            <?php print $this->render('front/_footerLinks.phtml'); ?>
+        </footer>
+
+
+        <!--[if lt IE 7 ]>
+        <script src="js/libs/dd_belatedpng.js"></script>
+        <script> DD_belatedPNG.fix('img, .png_bg'); </script>
+    
+        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+        <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+
+    </body>
+</html>

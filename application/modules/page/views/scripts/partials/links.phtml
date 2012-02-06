@@ -1,0 +1,33 @@
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a
+                href="<?php echo $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">Listar</a>
+                (<?php print $this->totalPages; ?>)
+            </dt>
+            <dd>Lista de páginas cadastradas</dd>
+        </dl>
+    </div>
+    <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a
+                href="<?php echo $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'new'), 'admin', true) ?>">Nova</a>
+            </dt>
+            <dd>Cadastrar nova Página</dd>
+        </dl>
+    </div>
+    <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
+<div class="fix"></div>
+<br/>

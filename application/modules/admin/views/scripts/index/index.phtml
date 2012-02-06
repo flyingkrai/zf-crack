@@ -1,0 +1,26 @@
+<!-- CAPA -->
+<script type="text/javascript">
+    function gerarCapa() {
+        var answer = confirm("Deseja gerar a capa?")
+        if (answer) {
+            document.capaForm.submit();
+        }
+    }
+</script>
+<fieldset>
+    <legend>Capa</legend>
+    <form action="/generate" method="post" name="capaForm">
+        <p class="box">
+            <a class="btn-list" href="javascript: gerarCapa();"><span>Gerar Capa</span></a>
+            <input type="submit" class="btn-list" style="display: none;">
+        </p>
+    </form>
+</fieldset>
+<!-- /CAPA -->
+
+<!-- OPEN GRAPH -->
+<fieldset>
+    <legend>Facebook Open Graph</legend>
+    <?php print $this->form; ?>
+</fieldset>
+<!-- /OPEN GRAPH -->

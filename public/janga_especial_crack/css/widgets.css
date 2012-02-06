@@ -1,0 +1,40 @@
+/*
+ * Geral
+ */
+.wgt      { display:block; float:left; margin:0 10px 15px; padding:0; position:relative; }
+.wgt-cont { display:block; position:relative; }
+/* Colunas */
+.wgt-g1 { width:140px; }
+.wgt-g2 { width:300px; }
+.wgt-g4 { width:620px;}
+.wgt-g6 { width:940px;}
+.wgt-full { margin-left:0 !important; margin-right:0 !important; width:100%; }
+
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Canais do Rodapé
+ */
+.wgt-canais h2 { font:700 14px 'Droid Sans', Arial, sans-serif; margin-bottom:5px; text-transform:uppercase; }
+.wgt-canais ul { margin:0 0 20px; }
+.wgt-canais li { display:block; font-size:12px; margin-bottom:5px; text-transform:lowercase; vertical-align:middle; }
+.wgt-canais a  { color:#FFF; vertical-align:middle; }
+.wgt-canais a:hover { color:#EE7526; }
+
+.wgt-canais .redes a    { background-repeat:no-repeat; display:block; height:18px; padding-left:18px; position:relative; }
+.wgt-canais .redes .ico { height:11px; left:0; position:absolute; top:0; width:11px; z-index:5; }
+.wgt-canais .redes .twr .ico { background-position:0 -55px; }
+.wgt-canais .redes .okt .ico { background-position:-11px -55px; }
+.wgt-canais .redes .fcb .ico { background-position:-22px -55px; }
+.wgt-canais .redes .rss .ico { background-position:-33px -55px; }

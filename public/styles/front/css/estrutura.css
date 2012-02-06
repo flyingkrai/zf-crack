@@ -1,0 +1,178 @@
+/*
+ * Basic
+ */
+
+/* LINKS */
+a:hover,
+a:active  { outline:none; }
+a,
+a:active,
+a:visited { color:#666; text-decoration:none; }
+a:hover   { color:#FC0; }
+
+/* SELECAO DO MOUSE */
+::-moz-selection { background:#639; color:#FFF; text-shadow:none; }
+::selection      { background:#639; color:#FFF; text-shadow:none; } 
+a:link           { -webkit-tap-highlight-color:#639; }
+
+/* IMAGE REPLACEMENT */
+.ir             { display:block; text-indent:-999em; overflow:hidden; background-repeat:no-repeat; text-align:left; direction:ltr; }
+.hidden         { display:none; visibility:hidden; } 
+.visuallyhidden { position:absolute !important; clip:rect(1px 1px 1px 1px);  clip:rect(1px, 1px, 1px, 1px); }
+.invisible      { visibility:hidden; }
+
+/* CLEAR */
+.clear          { clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
+.clearfix:before,
+.clearfix:after {  content:"\0020"; display:block; height:0; visibility:hidden;	 } 
+.clearfix:after { clear:both; }
+.clearfix       { zoom:1; }
+
+/* FLOAT */
+.fl          { float:left; }
+.fr          { float:right; }
+.alignleft   { float:left; margin:0 0 15px 15px; }
+.alignright  { float:right; margin:0 15px 15px 0; }
+.aligncenter { display:block; margin:0 auto 15px; }
+
+/* ALERTAS */
+.error,
+.notice,
+.success   { border:2px solid #DDDDDD; margin:13px 0px 5px; padding:0.8em; }
+.error     { -moz-background-clip:border; -moz-background-inline-policy:continuous; -moz-background-origin:padding; background:#FBE3E4 none repeat scroll 0 0; border-color:#FBC2C4; color:#8A1F11 !important; }
+.notice    { -moz-background-clip:border; -moz-background-inline-policy:continuous; -moz-background-origin:padding; background:#FFF6BF none repeat scroll 0 0; border-color:#FFD324; color:#514721 !important; }
+.success   { -moz-background-clip:border; -moz-background-inline-policy:continuous; -moz-background-origin:padding; background:#E6EFC2 none repeat scroll 0 0; border-color:#C6D880; color:#264409 !important; }
+.error a   { color:#8A1F11 !important; }
+.notice a  { color:#514721 !important; }
+.success a { color:#264409 !important; }
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Geral
+ */
+body       { background-color:#1E1E1E;  }
+#container { background-color:#000; width:100%; }
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Topo
+ */
+header { display:block; margin:0 auto; padding:0; width:100%; }
+.header-cont { background:url(../img/topo_bg.jpg) no-repeat right top transparent; display:block; height:215px; margin:0 auto; padding:35px 0; width:940px; }
+
+header .crack { display:block; height:215px; margin:0; padding:0; width:302px; }
+header .crack a { background:url(../img/crack.png) no-repeat 0 0 transparent; height:215px; margin:0; padding:0; width:302px; }
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Menu
+ */
+.menu    { background-color:#EE7526; display:block; margin:0 auto; text-shadow:1px 1px 0 rgba(0,0,0,.2); width:100%; }
+.menu-cont { margin:0 auto; padding:15px 0; width:960px; }
+.menu ul { border-left:6px solid #F88A37; color:#FFF; display:block; margin:0 auto; padding:0; }
+.menu li { display:inline-block; font-size:20px; text-transform:uppercase; padding:0; }
+.menu a  { color:#FFF; border-right:6px solid #F88A37; display:block; margin:0; padding:0 14px; }
+.menu a:hover { text-decoration:underline; }
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Meio
+ */
+#main { margin:0 auto; padding:0; width:100%; }
+.main-cont { display:block; margin:0 auto; padding:60px 0; width:940px; }
+
+/* Timeline */
+.timeline,
+.tm-cont     { display:block; margin:0 auto; padding:0; position:relative; width:670px; }
+.tm-cont     { background:url(../img/tl_spine.png) repeat-y top center transparent; }
+.timeline h2 { background-color:#000; bottom:0; color:#676767; display:block; font-size:24px; left:50%; margin:0 0 0 -100px; padding:5px 0; position:absolute; text-align:center; width:200px; z-index:5; }
+.timeline ol { display:block; margin:0 auto; padding:0; width:670xp; }
+.timeline li { display:block; height:272px; position:relative; width:324px; }
+.timeline .marcador { height:12px; margin-top:-6px; position:absolute; top:50%; width:12px; }
+.timeline .even { background-position:0 0; float:left; margin:0 0 136px; }
+.timeline .odd  { background-position:0 -544px; float:right; margin:136px 0 0; }
+
+.timeline .marcador { background:url(../img/ico_marcador.png) no-repeat 0 0 transparent; height:12px; margin-top:-6px; position:absolute; top:50%; width:12px; }
+.timeline .even .marcador { right:-17px; }
+.timeline .odd  .marcador { left:-17px; }
+
+.timeline li .capsula    { background-color:transparent; background-image:url(../img/sprite.png); background-repeat:no-repeat; display:block; height:272px; position:relative; width:324px; }
+.timeline .even .capsula { background-position:0 0; }
+.timeline .even .foto    { background-position:0 -272px !important; }
+.timeline .odd .capsula  { background-position:0 -544px; }
+.timeline .odd .foto     { background-position:0 -816px !important; }
+
+.timeline li .conteudo       { color:#000; display:block; margin:0; padding:0; position:absolute; text-align:center; width:220px; }
+.timeline li .conteudo .data { color:#FFDC7C; display:block; font-size:16px; margin:0 0 5px; text-shadow:0 0 1px rgba(0,0,0,.3); }
+.timeline li .conteudo h3    { color:#FFF; display:block; font-size:18px; font-weight:bold; margin:0 0 10px; text-shadow:0 0 1px rgba(0,0,0,.3); }
+.timeline li .conteudo h3 a  { color:#FFF; text-decoration:none; }
+.timeline li .conteudo h3 a:hover { text-decoration:underline; }
+.timeline li .conteudo strong     { display:block; color:#FFF; }
+
+
+.timeline .even .conteudo       { left:25px; top:55px; }
+.timeline .even .foto .conteudo { left:30px; top:100px; }
+.timeline .odd .conteudo        { right:25px; top:55px; }
+.timeline .odd .foto .conteudo  { right:30px; top:100px; }
+
+
+
+
+
+/*
+ * ****************************************************************************************************
+ */
+
+
+
+
+
+/*
+ * Rodape
+ */
+footer       { background-color:#1E1E1E; border-top:2px solid #3C3C3C; color:#FFF; font-size:11px; padding:45px 0 25px; width:100%; }
+.footer-cont { display:block; margin:0 auto; padding:0; position:relative; width:960px; }

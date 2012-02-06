@@ -1,0 +1,7 @@
+<?php $auth = Zend_Auth::getInstance(); ?>
+<?php if ($auth->hasIdentity()): ?>
+<p class="f-right">
+    User: <strong><?php print $auth->getIdentity()->name ?></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="admin/logout" id="logout">Log out</a></strong>
+</P>
+<?php endif; ?>

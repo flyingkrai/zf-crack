@@ -1,0 +1,53 @@
+<?php $form = $this->form; ?>
+<?php /** @var Zend_Form $form */ ?>
+<style type="text/css">
+    #form label {
+        font-weight: bold;
+    }
+
+    ul.msg li {
+        margin-left: 10px;
+    }
+</style>
+<?php if ($form->getMessages()): ?>
+<ul class="msg error">
+    <?php foreach ($form->getMessages() as $erros): ?>
+    <?php foreach ($erros as $error): ?>
+        <li><?php print $error; ?></li>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+<form action="<?php print $form->getAction(); ?>" method="<?php print $form->getMethod(); ?>" id="form">
+    <?php print $form->csrf->renderViewHelper(); ?>
+    <table class="nom nostyle">
+        <tr>
+            <td style="width:75px;">
+                <?php print $form->username->renderLabel(); ?>
+            </td>
+            <td>
+                <?php print $form->username->renderViewHelper(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php print $form->password->renderLabel(); ?>
+            </td>
+            <td>
+                <?php print $form->password->renderViewHelper(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="t-right">
+                <?php print $form->submit->renderViewHelper(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <span class="f-right">
+                    <a href="#">Esqueceu a senha?</a>
+                </span>
+            </td>
+        </tr>
+    </table>

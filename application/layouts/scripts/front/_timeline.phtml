@@ -1,0 +1,35 @@
+<?php $dice = 0; ?>
+<div class="timeline">
+    <?php foreach ($this->timeline as $year => $events): ?>
+    <div class="tm-cont">
+        <h2><?php print $year; ?></h2>
+        <ol class="line">
+            <?php foreach ($events as $event): ?>
+            <li class="<?php print (($dice++) % 2 == 0) ? 'even' : 'odd'; ?>"
+                style="<?php print ($event->image) ? "background-image:url('{$this->resizeImage($event->image)}'); background-position:10px center;" : null; ?>">
+                <div class="capsula <?php  print ($event->image) ? 'foto' : null; ?>">
+                    <div class="conteudo">
+                        <span class="data"><?php print $this->timelineDate($event->date); ?></span>
+
+                        <h3><a href="<?php print $this->escape($event->link); ?>"
+                               title="<?php print $this->escape($event->title); ?>"><?php print $this->truncate($event->title, 30); ?></a>
+                        </h3>
+                        <?php if (!$event->image): ?>
+                        <p>
+                            <?php print $this->truncate($event->content, 140); ?>.
+                            <a href="<?php print $this->escape($event->link); ?>" target="_blank"><strong>Leia
+                                mais</strong></a>
+                        </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="ir marcador"></div>
+            </li>
+            <?php #$dice++; ?>
+            <?php endforeach; ?>
+        </ol>
+
+        <div class="clear"></div>
+    </div>
+    <?php endforeach; ?>
+</div>

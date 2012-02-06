@@ -1,0 +1,52 @@
+/*
+ * Barra da Janga
+ */
+#jangabar           { background:#FFF url(http://www.jangadeiroonline.com.br/static/jangabar/bg_barra.gif) repeat-x left top; height:60px; left:0; position:relative; top:0; z-index:666; }
+.bar-container      { background:url(http://www.jangadeiroonline.com.br/static/jangabar/cores.png) repeat-x center bottom; height:56px; padding-bottom:4px; position:relative; width:100%; }
+.jangabar-canais    { margin:0 auto; padding:0; width:940px; }
+.jangabar-canais li { display:block; height:56px; float:left; font:bold 12px "Century Gothic", "Apple Gothic", sans-serif; margin:0; padding:0; text-transform:uppercase; }
+.jangabar-canais a  { border-left:1px solid #E8E8E8; border-right:1px solid #FFF; display:block; text-decoration:none; }
+
+.bar-por            { background:url(http://www.jangadeiroonline.com.br/static/jangabar/marca_janga.png) no-repeat left center; border-left:none !important; display:block; height:56px; overflow:hidden; text-indent:-666px; width:144px }
+
+/* CANAIS ********** */
+.bar-not,
+.bar-vid,
+.bar-emp,
+.bar-esp,
+.bar-jan,
+.bar-ele,
+.bar-com,
+.bar-tvv,
+.bar-rad { padding:20px 10px; }
+.bar-not { color:#F15A22 !important; }
+.bar-vid { color:#0DB4BA !important; }
+.bar-emp { color:#0C9C4E !important; }
+.bar-esp { color:#008F16 !important; }
+.bar-jan { color:#1B5CA8 !important; }
+.bar-ele { color:#029496 !important; }
+.bar-com { color:#E2281B !important; }
+.bar-tvv { color:#7198C4 !important; }
+.bar-rad { color:#941C74 !important; }
+
+/* HOVERS ********** */
+.jangabar-canais a:hover { color:#FFF !important; text-decoration:none !important; }
+.bar-not:hover { background:#F15A22; }
+.bar-vid:hover { background:#0DB4BA; }
+.bar-emp:hover { background:#0C9C4E; }
+.bar-esp:hover { background:#008F16; }
+.bar-jan:hover { background:#1B5CA8; }
+.bar-ele:hover { background:#029496; }
+.bar-com:hover { background:#E2281B; }
+.bar-tvv:hover { background:#7198C4; }
+.bar-rad:hover { background:#941C74; }
+
+/* SOCIAL MEDIA ********** */
+.bar-twt,
+.bar-okt,
+.bar-fcb,
+.bar-ytb { background-position:center center; background-repeat:no-repeat; border:none !important; display:block; height:56px; overflow:hidden; padding:0 !important; margin:0 !important; text-indent:-666px; width:30px; }
+.bar-twt { background-image:url(http://www.jangadeiroonline.com.br/static/jangabar/btn_twr.png); margin-left:15px !important; }
+.bar-okt { background-image:url(http://www.jangadeiroonline.com.br/static/jangabar/btn_orkut.png); }
+.bar-fcb { background-image:url(http://www.jangadeiroonline.com.br/static/jangabar/btn_fcb.png); }
+.bar-ytb { background-image:url(http://www.jangadeiroonline.com.br/static/jangabar/btn_ytb.png); }

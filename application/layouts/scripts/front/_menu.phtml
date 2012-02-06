@@ -1,0 +1,14 @@
+<nav class="menu">
+    <div class="menu-cont">
+        <ul>
+            <?php foreach ($this->menus as $menu): ?>
+                <li>
+                    <a href="<?php print ($menu->link) ? $menu->link : '#'; ?>" title="<?php print $menu->title ?>">
+                        <?php print $menu->title ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</nav>

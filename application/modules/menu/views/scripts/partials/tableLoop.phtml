@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('table').tablesorter({
+            sortList:[
+                [0, 0]
+            ],
+            widgets:['zebra'],
+            headers:{
+                3:{
+                    sorter:false
+                },
+                5:{
+                    sorter:false
+                }
+            }
+        });
+    });
+</script>
+
+<div id="div-table">
+    <table class="tablesorter" style="width: 100%;">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Página</th>
+            <th>Título</th>
+            <th>Link</th>
+            <th>Ordem</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach ($this->menus as $menu): ?>
+        <tr>
+            <td><?php print (int)$menu->id; ?></td>
+            <td><?php #print ($menu->page) ? $this->truncate($menu->page->title, 30) : null; ?></td>
+            <td><?php print $this->truncate($menu->title, 30); ?></td>
+            <td><?php print $this->truncate($menu->link, 30); ?></td>
+            <td><?php print $this->escape($menu->sequence); ?></td>
+            <td width="10%" style="text-align: center;">
+                <a href="<?php print $this->url(array('module' => 'menu', 'controller' => 'Index', 'action' => 'edit', 'id' => $menu->id), 'admin', true); ?>"
+                   style="margin-right: 10px" title="Editar">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-edit.gif');?>"/>
+                </a>
+                <a href="<?php print $this->url(array('module' => 'menu', 'controller' => 'Index', 'action' => 'delete', 'id' => $menu->id), 'admin', true); ?>"
+                   style="margin-right: 10px" title="Deletar">
+                    <img src="<?php print $this->baseUrl('/styles/design/ico-delete.gif');?>"/>
+                </a>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php if (!$this->menus): ?>
+        <tr>
+            <td colspan="6">Nenhum menu cadastrado.</td>
+        </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
