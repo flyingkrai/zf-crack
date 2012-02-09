@@ -1,12 +1,11 @@
 <?php
 
-
 /**
  * Description of Menu
  *
  * @author davi
  */
-class Application_Model_Menu extends Application_Model_Base
+class Application_Model_Menu extends Application_Model_Base implements Application_Model_BaseInteface
 {
 
     public function __construct()
@@ -23,16 +22,16 @@ class Application_Model_Menu extends Application_Model_Base
         try {
             $menu = $this->getDbTable();
             $select = $menu->select()
-                ->from($menu, array(new Zend_Db_Expr('count(id) as total')));
+                    ->from($menu, array(new Zend_Db_Expr('count(id) as total')));
             $result = $menu->fetchRow($select);
             if ($result) {
-                $total = (int)$result->total;
+                $total = (int) $result->total;
             }
         } catch (Exception $ex) {
-
+            
         }
 
-        return (int)$total;
+        return (int) $total;
     }
 
     /**
@@ -63,22 +62,27 @@ class Application_Model_Menu extends Application_Model_Base
     public function findAllOrdened()
     {
         $menu = $this->getDbTable();
-        $select = $menu->select()->order('sequence');
+        $select = $menu->select()->order('sequence')->order('title');
+        
         return $menu->fetchAll($select);
     }
 
     /**
      * @param array $data
+     * @return int $id
      */
     public function save($data)
     {
         $data = $this->_filterData($data);
 
-        if (isset($data['id']) && (int)$data['id']) {
-            $this->getDbTable()->update($data, array('id = ?' => $data['id']));
+        if (isset($data['id']) && (int) $data['id']) {
+            $id = $data['id'];
+            parent::_update($data, array('id = ?' => $id));
         } else {
-            $this->getDbTable()->insert($data);
+            $id = parent::_insert($data);
         }
+
+        return $id;
     }
 
     /**
@@ -86,7 +90,7 @@ class Application_Model_Menu extends Application_Model_Base
      */
     public function delete($id)
     {
-        $this->getDbTable()->delete(array('id = ?' => $id));
+        parent::_delete(array('id' => $id));
     }
 
     /**

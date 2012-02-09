@@ -5,7 +5,7 @@
  *
  * @author davi
  */
-class Application_Model_Timeline extends Application_Model_Base
+class Application_Model_Timeline extends Application_Model_Base implements Application_Model_BaseInteface
 {
 
     public function __construct()
@@ -22,31 +22,34 @@ class Application_Model_Timeline extends Application_Model_Base
         try {
             $timeline = $this->getDbTable();
             $select = $timeline->select()
-                ->from($timeline, array(new Zend_Db_Expr('count(id) as total')));
+                    ->from($timeline, array(new Zend_Db_Expr('count(id) as total')));
             $result = $timeline->fetchRow($select);
             if ($result) {
-                $total = (int)$result->total;
+                $total = (int) $result->total;
             }
         } catch (Exception $ex) {
-
+            
         }
 
-        return (int)$total;
+        return (int) $total;
     }
 
     /**
      * @param array $data
+     * @return int $id
      */
     public function save($data)
     {
         $data = $this->_filterData($data);
 
-        if (isset($data['id']) && (int)$data['id']) {
-            $this->getDbTable()->update($data, array('id = ?' => $data['id']));
+        if (isset($data['id']) && (int) $data['id']) {
+            $id = $data['id'];
+            parent::_update($data, array('id = ?' => $data['id']));
         } else {
-            unset($data['id']);
-            $this->getDbTable()->insert($data);
+            $id = $this->getDbTable()->insert($data);
         }
+
+        return (int) $id;
     }
 
     /**
@@ -54,7 +57,7 @@ class Application_Model_Timeline extends Application_Model_Base
      */
     public function delete($id)
     {
-        $this->getDbTable()->delete(array('id = ?' => $id));
+        parent::_delete(array('id' => $id));
     }
 
     /**
@@ -142,6 +145,11 @@ class Application_Model_Timeline extends Application_Model_Base
         }
 
         return $result;
+    }
+
+    public function log($action, $stuff)
+    {
+        ;
     }
 
 }
