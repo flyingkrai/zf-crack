@@ -66,7 +66,6 @@ class Application_Model_Timeline extends Application_Model_Base implements Appli
     public function deleteImage($id)
     {
         $timeline = $this->find($id);
-        @unlink(UPLOAD_PATH . $timeline->image);
         $timeline->image = '';
         $this->save($timeline->toArray());
     }
