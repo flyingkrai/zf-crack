@@ -94,7 +94,6 @@ abstract class Application_Model_Base
             case 'update':
             case 'delete':
                 $id = isset($stuff['id']) ? $stuff['id'] : 0;
-                unset($stuff['id']);
                 if ($id) {
                     $last_value = $this->_getChangedData($id);
                     $last_value = serialize($last_value);

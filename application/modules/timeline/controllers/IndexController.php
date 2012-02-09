@@ -77,10 +77,14 @@ class Timeline_IndexController extends Zend_Controller_Action
                     $upload = $this->_uploadImage();
                     $_POST['image'] = ($upload) ? $upload : null;
 
-                    $this->model->save($_POST);
+                    $id = $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('Cadastro de <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
-                    return $this->_redirect('admin/timeline');
+                    if ($upload) {
+                        return $this->_redirect('admin/timeline/crop/id/' . $id);
+                    } else {
+                        return $this->_redirect('admin/timeline');
+                    }
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -117,10 +121,14 @@ class Timeline_IndexController extends Zend_Controller_Action
                     if ($upload) {
                         $this->_deleteImage($timeline->image);
                     }
-                    $this->model->save($_POST);
+                    $id = $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-                    return $this->_redirect('admin/timeline');
+                    if ($upload) {
+                        return $this->_redirect('admin/timeline/crop/id/' . $id);
+                    } else {
+                        return $this->_redirect('admin/timeline');
+                    }
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -223,10 +231,10 @@ class Timeline_IndexController extends Zend_Controller_Action
         if ($request->isPost()) {
             try {
                 if ($form->isValid($_POST)) {
-                    $image = $this->_helper->Image->cropImg(UPLOAD_PATH . $_POST['image'], $_POST['w'], $_POST['h'], $_POST['x1'], $_POST['x2'], $_POST['y1'], $_POST['y2']);
+                    $image = $this->_helper->Image->cropImg(UPLOAD_PATH . $_POST['image'], $_POST['w'], $_POST['h'], $_POST['x'], $_POST['y']);
 
-//                    $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-//                    return $this->_redirect('admin/timeline');
+                    $this->_helper->FlashMessenger('Imagem <strong><i>&OpenCurlyDoubleQuote;' . $timeline->title . '&CloseCurlyDoubleQuote;</i></strong> salva');
+                    return $this->_redirect('admin/timeline');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());

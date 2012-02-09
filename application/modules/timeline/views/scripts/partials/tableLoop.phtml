@@ -2,7 +2,7 @@
     jQuery(function () {
         jQuery('table').tablesorter({
             sortList:[
-                [0, 0]
+                [0, 1]
             ],
             widgets:['zebra'],
             headers:{
@@ -13,6 +13,9 @@
                     sorter:false
                 },
                 5:{
+                    sorter:false
+                },
+                6:{
                     sorter:false
                 }
             }
@@ -32,6 +35,7 @@
             <th>Link</th>
             <th>Texto</th>
             <th>Data</th>
+            <th>Imagem</th>
             <th>&nbsp;</th>
         </tr>
         </thead>
@@ -44,6 +48,22 @@
             <td><?php print $this->escape($log->link); ?></td>
             <td><?php print $this->truncate($log->content); ?></td>
             <td><?php print $this->dateToBr($log->date); ?></td>
+            <td width="8%">                
+                <?php if ($log->image): ?>
+                <a href="<?php print UPLOAD_URL . $log->image; ?>" style="margin-right: 10px" target="_blank"
+                    class="lightboxA" id="<?php print $log->id; ?>">
+                    <img src="<?php print $this->baseUrl('public/styles/design/ico-image.gif');?>"/>
+                </a>
+                <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'crop', 'id' => $log->id), 'admin', true); ?>" style="margin-right: 10px"
+                    title="Cortar Imagem">
+                    <img src="<?php print $this->baseUrl('public/styles/design/ico-image-edit.gif');?>"/>
+                </a>
+                <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'image', 'id' => $log->id), 'admin', true); ?>"
+                   title="Remover Imagem">
+                    <img src="<?php print $this->baseUrl('public/styles/design/ico-image-delete.gif');?>"/>
+                </a>
+                <?php endif; ?>
+            </td>
             <td width="10%" style="text-align: center;">
                 <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'edit', 'id' => $log->id), 'admin', true); ?>"
                    style="margin-right: 10px" title="Editar">
@@ -53,16 +73,6 @@
                    style="margin-right: 10px" title="Deletar">
                     <img src="<?php print $this->baseUrl('public/styles/design/ico-delete.gif');?>"/>
                 </a>
-                <?php if ($log->image): ?>
-                <a href="<?php print UPLOAD_URL . $log->image; ?>" style="margin-right: 10px" target="_blank"
-                    class="lightboxA" id="<?php print $log->id; ?>">
-                    <img src="<?php print $this->baseUrl('public/styles/design/ico-image.gif');?>"/>
-                </a>
-                <a href="<?php print $this->url(array('module' => 'timeline', 'controller' => 'Index', 'action' => 'image', 'id' => $log->id), 'admin', true); ?>"
-                   title="Remover Imagem">
-                    <img src="<?php print $this->baseUrl('public/styles/design/ico-image-delete.gif');?>"/>
-                </a>
-                <?php endif; ?>
             </td>
         </tr>
             <?php endforeach; ?>

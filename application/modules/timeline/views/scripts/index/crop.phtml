@@ -3,10 +3,8 @@
 <script language="Javascript">
     var ImageCrop = {
         setCoords:function(c){
-            $('#x1').val(c.x);
-            $('#y1').val(c.y);
-            $('#x2').val(c.x2);
-            $('#y2').val(c.y2);
+            $('#x').val(c.x);
+            $('#y').val(c.y);
             $('#w').val(c.w);
             $('#h').val(c.h);
         }
@@ -30,5 +28,8 @@
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+<p class="box">
+    
+</p>
 <img src="<?php print UPLOAD_URL . $this->timeline->image; ?>" id="target" />
 <?php print $form; ?>

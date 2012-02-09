@@ -144,17 +144,17 @@ class Lib_Action_Helper_Image extends Zend_Controller_Action_Helper_Abstract
     /**
      * @param int $width
      * @param int $height
-     * @param int $x_o
-     * @param int $y_o
-     * @param int $x_d
-     * @param int $y_d 
+     * @param int $x
+     * @param int $y
      */
-    public function cropImg($filePath, $width, $height, $x1=0, $x2=0, $y1=0, $y2=0)
+    public function cropImg($filePath, $width, $height, $x=0, $y=0)
     {
         $image = $this->load($filePath);
 
         $new_image = imagecreatetruecolor($width, $height);
-        imagecopyresampled($new_image, $image->resource, 0, 0, $x2, $y2, $width, $height, $width, $height);
+        imagecopyresampled($new_image, $image->resource, 0, 0, $x, $y, $width, $height, $width, $height);
+
+        $image->resource = $new_image;
 
         $this->save($image, 0777);
     }

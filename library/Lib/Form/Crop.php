@@ -24,8 +24,8 @@ class Lib_Form_Crop extends Zend_Form
             'decorators' => $decorators
         ));
 
-        // X1
-        $this->addElement('hidden', 'x1', array(
+        // Y
+        $this->addElement('hidden', 'x', array(
             'required' => false,
             'filters' => array('StringTrim'),
             'validators' => array(
@@ -36,32 +36,8 @@ class Lib_Form_Crop extends Zend_Form
             'decorators' => $decorators
         ));
 
-        // X2
-        $this->addElement('hidden', 'x2', array(
-            'required' => false,
-            'filters' => array('StringTrim'),
-            'validators' => array(
-                array(
-                    'validator' => 'Int'
-                ),
-            ),
-            'decorators' => $decorators
-        ));
-
-        // Y1
-        $this->addElement('hidden', 'y1', array(
-            'required' => false,
-            'filters' => array('StringTrim'),
-            'validators' => array(
-                array(
-                    'validator' => 'Int'
-                ),
-            ),
-            'decorators' => $decorators
-        ));
-
-        // Y2
-        $this->addElement('hidden', 'y2', array(
+        // X
+        $this->addElement('hidden', 'y', array(
             'required' => false,
             'filters' => array('StringTrim'),
             'validators' => array(
