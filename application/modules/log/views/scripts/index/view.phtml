@@ -1,0 +1,34 @@
+<div class="col50">
+    <dl class="nostyle">
+        <dt>Data</dt>
+        <dd><?php print $this->dateToBr($this->log->date); ?></dd>
+        <dt>Usuário</dt>
+        <dd><?php print $this->escape($this->user->name); ?></dd>
+    </dl>
+</div>
+<div class="col50 f-right">
+    <dl class="nostyle">
+        <dt>Ação</dt>
+        <dd><?php print $this->dbActions($this->log->action); ?></dd>
+        <dt>Entidade</dt>
+        <dd><?php print $this->escape(ucfirst($this->log->table)); ?></dd>
+    </dl>
+</div>
+<div class="col50">
+    <dl class="nostyle">
+        <dt>Dados atuais</dt>
+        <dd><pre><?php print $this->dumpLogData($this->log->value); ?></pre></dd>
+    </dl>
+</div>
+<div class="col50 f-right">
+    <dl class="nostyle">
+        <dt>Dados anteriores</dt>
+        <dd><pre><?php print $this->dumpLogData($this->log->last_value); ?></pre></dd>
+    </dl>
+</div>
+<div class="fix"></div>
+<p>
+    <a class="ico-arrow-left" href="<?php print $this->url(array('module' => 'log', 'controller' => 'Index', 'action' => 'index'), 'admin', true); ?>">
+        Voltar
+    </a>
+</p>

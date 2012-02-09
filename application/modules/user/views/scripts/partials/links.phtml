@@ -1,3 +1,4 @@
+<?php if (Zend_Auth::getInstance()->getIdentity()->is_admin): ?>
 <!-- Button -->
 <div class="btn-box">
     <div class="btn-top"></div>
@@ -28,6 +29,7 @@
     <!-- /btn -->
     <div class="btn-bottom"></div>
 </div>
+<?php endif; ?>
 <!-- /Button -->
 <div class="fix"></div>
 <br/>

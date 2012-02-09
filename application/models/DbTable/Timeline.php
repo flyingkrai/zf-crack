@@ -11,4 +11,12 @@ class Application_Model_DbTable_Timeline extends Zend_Db_Table_Abstract
      * @var string
      */
     protected $_name = 'timeline';
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->_name;
+    }
 }

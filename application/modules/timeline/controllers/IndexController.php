@@ -6,14 +6,12 @@ class Timeline_IndexController extends Zend_Controller_Action
     /**
      * @var Application_Model_Timeline
      *
-     *
      */
     protected $model = null;
 
     /**
      * Handle file upload
      * @return string
-     *
      */
     protected function _uploadImage()
     {
@@ -81,8 +79,6 @@ class Timeline_IndexController extends Zend_Controller_Action
 
     public function editAction()
     {
-        $this->view->title .= " - Editar";
-
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
@@ -126,8 +122,6 @@ class Timeline_IndexController extends Zend_Controller_Action
 
     public function deleteAction()
     {
-        $this->view->title .= " - Deletar";
-
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
@@ -157,8 +151,6 @@ class Timeline_IndexController extends Zend_Controller_Action
 
     public function imageAction()
     {
-        $this->view->title .= " - Remover Imagem";
-
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
@@ -183,45 +175,6 @@ class Timeline_IndexController extends Zend_Controller_Action
             }
         }
 
-        $this->view->timeline = $timeline;
-    }
-
-    public function cropAction()
-    {
-        $this->view->title .= " - Crop";
-
-        $request = $this->getRequest();
-        $id = $request->getParam('id');
-        if (!$id) {
-            $this->_helper->FlashMessenger('ID do evento não informado');
-            return $this->_redirect('admin/timeline');
-        }
-
-        $timeline = $this->model->find($id);
-        if (!$timeline) {
-            $this->_helper->FlashMessenger('Evento não encontrado');
-            return $this->_redirect('admin/timeline');
-        }
-
-        $form = new Lib_Form_Crop();
-        if ($request->isPost()) {
-            try {
-                if ($form->isValid($_POST)) {
-                    $image = $this->_helper->image->cropImg(UPLOAD_PATH . $_POST['image'], $_POST['w'], $_POST['h'], $_POST['x1'], $_POST['x2'], $_POST['y1'], $_POST['y2']);
-
-//                    $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-//                    return $this->_redirect('admin/timeline');
-                }
-            } catch (Exception $ex) {
-                $this->_helper->FlashMessenger($ex->getMessage());
-            }
-        } else {
-            $form->populate(array(
-                'image' => $timeline->image,
-            ));
-        }
-
-        $this->view->form = $form;
         $this->view->timeline = $timeline;
     }
 

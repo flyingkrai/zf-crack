@@ -22,7 +22,7 @@ class User_IndexController extends Zend_Controller_Action
     protected function _isAdmin()
     {
         $user = $this->_getCurrentUser();
-        return ($user->id == 1 && $user->username == 'admin');
+        return ($user->is_admin);
     }
 
     /**
@@ -41,7 +41,7 @@ class User_IndexController extends Zend_Controller_Action
         $this->model = new Application_Model_User();
 
         $this->view->totalUsers = $this->model->count();
-        $this->view->title = "Users";
+        $this->view->title = "Usuários";
         $this->view->headTitle($this->view->title);
     }
 
@@ -97,7 +97,7 @@ class User_IndexController extends Zend_Controller_Action
         }
 
         $form = new Lib_Form_User();
-        $form->getElement('username')->setAttrib('disabled', true);
+        $form->getElement('username')->setAttrib('readonly', true);
         if ($request->isPost()) {
             try {
                 if ($form->isValid($_POST)) {

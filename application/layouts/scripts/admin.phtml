@@ -1,62 +1,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
-    <?php echo $this->headTitle(); ?>
-    <?php echo $this->headLink(); ?>
-    <?php echo $this->headScript(); ?>
-</head>
-<body>
-<div id="main">
-    <div id="tray" class="box">
-        <p class="f-left box">
-            <strong>Admin | Crack no Ceará</strong>
-        </p>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink(); ?>
+        <?php echo $this->headScript(); ?>
+    </head>
+    <body>
+        <div id="main">
+            <div id="tray" class="box">
+                <p class="f-left box">
+                    <strong>Admin | Crack no Ceará</strong>
+                </p>
 
-        <?php print $this->render('admin/_user.phtml'); ?>
-    </div>
+                <?php print $this->render('admin/_user.phtml'); ?>
+            </div>
 
-    <hr class="noscreen"/>
+            <hr class="noscreen"/>
 
-    <div id="menu" class="box">
-        <ul class="box f-right">
-            <li>
-                <a href="<?php print $this->baseUrl('/'); ?>"
-                   target="_blank">
-                    <span><strong>Visitar Site »</strong></span>
-                </a>
-            </li>
-        </ul>
+            <div id="menu" class="box">
+                <ul class="box f-right">
+                    <li>
+                        <a href="<?php print $this->baseUrl('/'); ?>"
+                           target="_blank">
+                            <span><strong>Visitar Site »</strong></span>
+                        </a>
+                    </li>
+                </ul>
 
-        <?php print $this->render('admin/_menu.phtml') ?>
-    </div>
+                <?php print $this->render('admin/_menu.phtml') ?>
+            </div>
 
-    <hr class="noscreen"/>
+            <hr class="noscreen"/>
 
-    <div id="cols" class="box">
-        <div id="content" class="box">
-            <h1><?php print $this->title; ?></h1>
-            <?php if ($this->messages && is_array($this->messages)): ?>
-            <ul>
-                <?php foreach ($this->messages as $message): ?>
-                <p class="msg info"><?php print $message; ?></p>
-                <?php endforeach; ?>
-            </ul>
-            <?php endif; ?>
-            <div class="fix"></div>
-            <br/>
-            <?php print $this->layout()->content; ?>
+            <div id="cols" class="box">
+                <div id="content" class="box">
+                    <h1><?php print $this->title; ?></h1>
+                    <?php if ($this->messages && is_array($this->messages)): ?>
+                        <ul>
+                            <?php foreach ($this->messages as $message): ?>
+                                <p class="msg info"><?php print $message; ?></p>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                    <div class="fix"></div>
+                    <br/>
+                    <?php print $this->layout()->content; ?>
+                </div>
+            </div>
+
+            <hr class="noscreen"/>
+
+            <div class="box" id="footer">
+                <p class="f-left">&copy; 2011
+                    <a href="http://www.indexdigitel.com.br">Index Comunicação Digital</a>
+                    , All Rights Reserved &reg;</p>
+
+                <p class="f-right">Templates by <a href="http://www.adminizio.com/">Adminizio</a></p>
+            </div>
         </div>
-    </div>
-
-    <hr class="noscreen"/>
-
-    <div class="box" id="footer">
-        <p class="f-left">&copy; 2009 <a href="#">Your Company</a>, All Rights Reserved &reg;</p>
-
-        <p class="f-right">Templates by <a href="http://www.adminizio.com/">Adminizio</a></p>
-    </div>
-</div>
-</body>
+    </body>
 </html>

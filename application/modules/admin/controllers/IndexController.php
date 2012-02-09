@@ -2,14 +2,17 @@
 
 class Admin_IndexController extends Zend_Controller_Action
 {
+
     public function init()
     {
-
+        $this->view->title = "Dashboard";
+        $this->view->headTitle($this->view->title);
     }
 
     /**
      * @param array $values
      * @return bool
+     *
      *
      */
     protected function _process($values)
@@ -32,6 +35,7 @@ class Admin_IndexController extends Zend_Controller_Action
     /**
      * @return Zend_Auth_Adapter_DbTable
      *
+     *
      */
     protected function _getAuthAdapter()
     {
@@ -39,9 +43,9 @@ class Admin_IndexController extends Zend_Controller_Action
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 
         $authAdapter->setTableName('users')
-            ->setIdentityColumn('username')
-            ->setCredentialColumn('password')
-            ->setCredentialTreatment('SHA1(CONCAT(?,salt))');
+                ->setIdentityColumn('username')
+                ->setCredentialColumn('password')
+                ->setCredentialTreatment('SHA1(CONCAT(?,salt))');
 
 
         return $authAdapter;
@@ -56,6 +60,7 @@ class Admin_IndexController extends Zend_Controller_Action
 
     /**
      * @param array $data
+     *
      */
     protected function _generateOpenGraph($data)
     {
@@ -71,17 +76,43 @@ HTML;
         foreach ($data as $key => $value) {
             $html = str_replace('{' . $key . '}', $value, $html);
         }
-        var_dump($html);
-        var_dump(APPLICATION_PATH . '/layouts/scripts/front/_opengraph.phtml');
-        exit;
-
 
         @file_put_contents(APPLICATION_PATH . '/layouts/scripts/front/_opengraph.phtml', $html);
     }
 
     public function indexAction()
     {
-        $this->view->title = "Dashboard";
+    }
+
+    public function loginAction()
+    {
+        $this->view->headTitle('Login');
+        $this->_helper->layout()->setLayout('login');
+
+        $this->_hasAuth();
+        $request = $this->getRequest();
+
+        $form = new Lib_Form_Login();
+        if ($request->isPost()) {
+            if ($form->isValid($_POST)) {
+                if ($this->_process($form->getValues())) {
+                    // We're authenticated! Redirect to the home page
+                    $this->_redirect('admin/dashboard');
+                }
+            }
+        }
+        $this->view->form = $form;
+    }
+
+    public function logoutAction()
+    {
+        @Zend_Auth::getInstance()->clearIdentity();
+        $this->_redirect('admin/');
+    }
+
+    public function opengraphAction()
+    {
+        $this->view->title .= " - Facebook OpenGraph";
 
         $form = new Lib_Form_OpenGraph();
         $configModel = new Application_Model_Config();
@@ -111,32 +142,6 @@ HTML;
         }
 
         $this->view->form = $form;
-    }
-
-    public function loginAction()
-    {
-        $this->view->headTitle('Login');
-        $this->_helper->layout()->setLayout('login');
-
-        $this->_hasAuth();
-        $request = $this->getRequest();
-
-        $form = new Lib_Form_Login();
-        if ($request->isPost()) {
-            if ($form->isValid($_POST)) {
-                if ($this->_process($form->getValues())) {
-                    // We're authenticated! Redirect to the home page
-                    $this->_redirect('admin/dashboard');
-                }
-            }
-        }
-        $this->view->form = $form;
-    }
-
-    public function logoutAction()
-    {
-        @Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('admin/');
     }
 
 }

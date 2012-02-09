@@ -63,7 +63,7 @@ LAYOUT
 #tray #logout {padding-left:18px; background:url("../design/tray-logout.gif") 0 50% no-repeat; text-transform:uppercase;}
 #tray #switcher {margin-right:15px;}
 #tray #switcher img {display:block; float:left; width:16px; height:16px; border:0;}
-#menu {position:relative; z-index:999; padding:15px 15px 13px 15px; background:url("../design/menu.gif") 0 0 repeat-x;}
+#menu {position:relative; z-index:5; padding:15px 15px 13px 15px; background:url("../design/menu.gif") 0 0 repeat-x;}
 #menu ul {margin:0; padding:0; list-style:none;}
 #menu ul li {display:inline; margin:0; padding:0;}
 #menu ul li div {float:left; position:relative;}

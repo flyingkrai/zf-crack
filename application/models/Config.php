@@ -38,6 +38,11 @@ class Application_Model_Config
         $this->setDbTable('Application_Model_DbTable_Config');
     }
 
+    /**
+     * @param string $type
+     * @param string $key
+     * @return type 
+     */
     public function find($type, $key)
     {
         $table = $this->getDbTable();

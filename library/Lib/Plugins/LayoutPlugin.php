@@ -45,17 +45,22 @@ class Lib_Plugins_LayoutPlugin extends Zend_Controller_Plugin_Abstract
 
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/reset.css'), 'screen, projection');
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/main.css'), 'screen, projection');
-        $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/2col.css'), 'screen, projection');
+        $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/1col.css'), 'screen, projection');
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/main-ie6.css'), 'screen, projection', "lt IE 8");
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/style.css'), 'screen, projection');
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/mystyle.css'), 'screen, projection');
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/smoothness/jquery-ui-1.8.14.custom.css'));
+        $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/lightbox/jquery.lightbox-0.5.css'), 'screen');
+        $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/jcrop/jquery.Jcrop.css'));
 
-        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-1.5.1.min.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-1.6.2.min.js'));
         $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-ui-1.8.14.full.min.js'));
         $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-ui-timepicker-addon.js'));
         $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.tablesorter.min.js'));
-        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.tablesorter.pager.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.tablesorter.pager.min.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.lightbox-0.5.min.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.Jcrop.min.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery.color.js'));
     }
 
     protected function _frontLayout()
@@ -69,7 +74,7 @@ class Lib_Plugins_LayoutPlugin extends Zend_Controller_Plugin_Abstract
 
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/front/style.css'));
 
-        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-1.5.1.min.js'));
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-1.6.2.min.js'));
         //        $view->headScript()->appendFile('/scripts/dd_belatedpng.js');
         //        $view->headScript()->appendFile('/scripts/modernizr-2.0.6.min.js');
     }

@@ -5,6 +5,7 @@
  */
 class Lib_Extra_Image extends Lib_Extra_Source_ImageLib
 {
+
     public function resizeImage($image, $width = 272, $height = 272)
     {
         if (empty($image)) {
@@ -30,9 +31,9 @@ class Lib_Extra_Image extends Lib_Extra_Source_ImageLib
             if (!$this->resize()) {
                 return $this->display_errors();
             }
-
         }
 
         return UPLOAD_URL . $banner_resized;
     }
+
 }

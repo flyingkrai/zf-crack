@@ -77,7 +77,7 @@ class Lib_Form_Menu extends Zend_Form
         ));
 
         // Páginas
-        $options = $this->_getOptions();
+        /*$options = $this->_getOptions();
         $this->addElement('select', 'page_id', array(
             'label' => 'Página',
             'class' => 'input-text',
@@ -86,7 +86,7 @@ class Lib_Form_Menu extends Zend_Form
             'multiOptions' => $options,
             'required' => false,
             'filters' => array('StringTrim')
-        ));
+        ));*/
 
         // Target
         $this->addElement('select', 'target', array(

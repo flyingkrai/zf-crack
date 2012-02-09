@@ -47,7 +47,7 @@
             </td>
         </tr>
             <?php endforeach; ?>
-        <?php if (!$this->users): ?>
+        <?php if (!$this->users->count() > 0): ?>
         <tr>
             <td colspan="6">Nenhum usuário cadastrada.</td>
         </tr>

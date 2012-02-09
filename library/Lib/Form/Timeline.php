@@ -99,6 +99,7 @@ class Lib_Form_Timeline extends Zend_Form
         $image = new Zend_Form_Element_File('image');
         $image->setLabel('Imagem')
                 ->setRequired(false);
+        $image->addValidator('ImageSize', false, array('minheight' => 272, 'minwidth' => 272));
         $image->addValidator('Size', false, 512000);
         $image->addValidator('Count', false, 1);
         $image->addValidator('Extension', false, 'jpg,png,gif');

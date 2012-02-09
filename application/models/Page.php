@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Description of Page
  *
  * @author davi
  */
-class  Application_Model_Page extends Application_Model_Base
+class Application_Model_Page extends Application_Model_Base implements Application_Model_BaseInteface
 {
 
     public function __construct()
@@ -21,16 +22,16 @@ class  Application_Model_Page extends Application_Model_Base
         try {
             $page = $this->getDbTable();
             $select = $page->select()
-                ->from($page, array(new Zend_Db_Expr('count(id) as total')));
+                    ->from($page, array(new Zend_Db_Expr('count(id) as total')));
             $result = $page->fetchRow($select);
             if ($result) {
-                $total = (int)$result->total;
+                $total = (int) $result->total;
             }
         } catch (Exception $ex) {
-
+            
         }
 
-        return (int)$total;
+        return (int) $total;
     }
 
     /**
@@ -57,6 +58,7 @@ class  Application_Model_Page extends Application_Model_Base
 
     /**
      * @param array $data
+     * @return int $id
      */
     public function save($data)
     {
@@ -64,13 +66,16 @@ class  Application_Model_Page extends Application_Model_Base
         $zDate = new Zend_Date();
         $now = $zDate->toString('yyyy-MM-dd H:m:s', null, new Zend_Locale('America/Fortaleza'));
 
-        if (isset($data['id']) && (int)$data['id']) {
+        if (isset($data['id']) && (int) $data['id']) {
             $data['updated'] = $now;
-            $this->getDbTable()->update($data, array('id = ?' => $data['id']));
+            $id = $data['id'];
+            parent::_update($data, array('id = ?' => $data['id']));
         } else {
             $data['created'] = $now;
-            $this->getDbTable()->insert($data);
+            $id = parent::_insert($data);
         }
+
+        return (int) $id;
     }
 
     /**
@@ -78,7 +83,7 @@ class  Application_Model_Page extends Application_Model_Base
      */
     public function delete($id)
     {
-        $this->getDbTable()->delete(array('id = ?' => $id));
+        parent::_delete(array('id' => $id));
     }
 
     /**
@@ -114,6 +119,11 @@ class  Application_Model_Page extends Application_Model_Base
         }
 
         return $result;
+    }
+
+    public function log($action, $stuff)
+    {
+        ;
     }
 
 }

@@ -14,6 +14,9 @@ class Front_PageController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        if ($this->getRequest()->getParam('page') != 'test' || !Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect('/');
+        }
     }
 
     public function generateAction()
@@ -21,6 +24,7 @@ class Front_PageController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
             $this->_redirect('/');
         }
+        $log = new Application_Model_Log();
 
         try {
             $layout = $this->_helper->layout();
@@ -29,6 +33,7 @@ class Front_PageController extends Zend_Controller_Action
             $html = $layout->render();
 
             @file_put_contents(APPLICATION_PATH . '/../index.html', $html);
+            $log->publicLog('capa', 'generate', null, null);
             $this->_helper->FlashMessenger('Capa gerada!');
         } catch (Exception $exc) {
             $this->_helper->FlashMessenger($exc->getMessage());

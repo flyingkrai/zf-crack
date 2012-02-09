@@ -31,26 +31,26 @@
         </thead>
 
         <tbody>
-        <?php foreach ($this->pages as $menu): ?>
+        <?php foreach ($this->pages as $log): ?>
         <tr>
-            <td><?php print (int)$menu->id; ?></td>
-            <td><?php print $this->escape($menu->title); ?></td>
-            <td><?php print $this->escape($menu->url); ?></td>
-            <td><?php print $this->dateToBr($menu->created); ?></td>
-            <td><?php print $this->dateToBr($menu->updated); ?></td>
+            <td><?php print (int)$log->id; ?></td>
+            <td><?php print $this->escape($log->title); ?></td>
+            <td><?php print $this->escape($log->url); ?></td>
+            <td><?php print $this->dateToBr($log->created); ?></td>
+            <td><?php print $this->dateToBr($log->updated); ?></td>
             <td width="10%" style="text-align: center;">
-                <a href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'edit', 'id' => $menu->id), 'admin', true); ?>"
+                <a href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'edit', 'id' => $log->id), 'admin', true); ?>"
                    style="margin-right: 10px" title="Editar">
-                    <img src="<?php print $this->baseUrl('/styles/design/ico-edit.gif');?>"/>
+                    <img src="<?php print $this->baseUrl('public/styles/design/ico-edit.gif');?>"/>
                 </a>
-                <a href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'delete', 'id' => $menu->id), 'admin', true); ?>"
+                <a href="<?php print $this->url(array('module' => 'page', 'controller' => 'Index', 'action' => 'delete', 'id' => $log->id), 'admin', true); ?>"
                    style="margin-right: 10px" title="Deletar">
-                    <img src="<?php print $this->baseUrl('/styles/design/ico-delete.gif');?>"/>
+                    <img src="<?php print $this->baseUrl('public/styles/design/ico-delete.gif');?>"/>
                 </a>
             </td>
         </tr>
             <?php endforeach; ?>
-        <?php if (!$this->pages): ?>
+        <?php if (!$this->pages->count() > 0): ?>
         <tr>
             <td colspan="6">Nenhuma página cadastrada.</td>
         </tr>

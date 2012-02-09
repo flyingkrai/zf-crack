@@ -1,0 +1,70 @@
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('table').tablesorter({
+            widgets:['zebra'],
+            headers:{
+                4:{
+                    sorter:false
+                }
+            }
+        }).tablesorterPager({container: jQuery("#pager")});
+    });
+</script>
+
+<div id="div-table">
+    <table class="tablesorter" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Quem</th>
+                <th>O Quê</th>
+                <th>Onde</th>
+                <th>Quando</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php foreach ($this->logs as $log): ?>
+                <?php $user = $log->findParentRow('Application_Model_DbTable_User'); ?>
+                <tr>
+                    <td><?php print $this->escape($user->name); ?></td>
+                    <td><?php print $this->dbActions($log->action); ?></td>
+                    <td><?php print $this->escape(ucfirst($log->table)); ?></td>
+                    <td><?php print $this->dateToBr($log->date); ?></td>
+                    <td width="10%" style="text-align: center;">
+                        <a href="<?php print $this->url(array('module' => 'log', 'controller' => 'Index', 'action' => 'view', 'id' => $log->id), 'admin', true); ?>"
+                           style="margin-right: 10px" title="Ver">
+                            <img src="<?php print $this->baseUrl('public/styles/design/ico-show.gif'); ?>"/>
+                        </a>                        
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <?php if (!$this->logs->count() > 0): ?>
+                <tr>
+                    <td colspan="6">Nenhum log registrado.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="pager" id="pager">
+                        <form>
+                            <img class="first" src="<?php print $this->baseUrl('public/images/pager/first.png'); ?>">
+                            <img class="prev" src="<?php print $this->baseUrl('public/images/pager/prev.png'); ?>">
+                            <input type="text" class="pagedisplay">
+                            <img class="next" src="<?php print $this->baseUrl('public/images/pager/next.png'); ?>">
+                            <img class="last" src="<?php print $this->baseUrl('public/images/pager/last.png'); ?>">
+                            <select class="pagesize">
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                            </select>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

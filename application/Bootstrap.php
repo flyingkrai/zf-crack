@@ -14,10 +14,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initActionHelpers()
     {
         Zend_Controller_Action_HelperBroker::addHelper(
-            new Lib_Action_Helper_Messenger()
+                new Lib_Action_Helper_Messenger()
         );
         Zend_Controller_Action_HelperBroker::addHelper(
-            new Lib_Action_Helper_FileUpload()
+                new Lib_Action_Helper_FileUpload()
+        );
+        Zend_Controller_Action_HelperBroker::addHelper(
+                new Lib_Action_Helper_Image()
         );
     }
 
@@ -26,6 +29,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $dateHelper = new Lib_View_Helper_Date();
         $textHelper = new Lib_View_Helper_Text();
         $imageHelper = new Lib_Extra_Image();
+        $logHelper = new Lib_View_Helper_Log();
 
         $this->bootstrap('view');
         $view = $this->getResource('view');
@@ -36,7 +40,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->registerHelper($dateHelper, 'dateToBr');
         $view->registerHelper($dateHelper, 'timelineDate');
         $view->registerHelper($textHelper, 'truncate');
+        $view->registerHelper($textHelper, 'dbActions');
         $view->registerHelper($imageHelper, 'resizeImage');
+        $view->registerHelper($logHelper, 'dumpLogData');
     }
 
     protected function _initPlugins()
@@ -44,10 +50,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front = Zend_Controller_Front::getInstance();
 
         $front->registerPlugin(
-            new Lib_Plugins_AuthPlugin()
+                new Lib_Plugins_AuthPlugin()
         );
         $front->registerPlugin(
-            new Lib_Plugins_LayoutPlugin()
+                new Lib_Plugins_LayoutPlugin()
         );
     }
 
@@ -59,51 +65,61 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 
         $route = new Zend_Controller_Router_Route(
-            ':page',
-            array(
-                'module' => 'front',
-                'controller' => 'Page',
-                'action' => 'index'
-            )
+                        ':page',
+                        array(
+                            'module' => 'front',
+                            'controller' => 'Page',
+                            'action' => 'index'
+                        )
         );
         $router->addRoute('frontend', $route);
 
         $route = new Zend_Controller_Router_Route(
-            'generate',
-            array(
-                'module' => 'front',
-                'controller' => 'Page',
-                'action' => 'generate'
-            )
+                        'generate',
+                        array(
+                            'module' => 'front',
+                            'controller' => 'Page',
+                            'action' => 'generate'
+                        )
         );
         $router->addRoute('generate', $route);
 
         $route = new Zend_Controller_Router_Route(
-            'admin/:module/:action/*',
-            array(
-                'controller' => 'Index',
-                'action' => 'index'
-            )
+                        'admin/:module/:action/*',
+                        array(
+                            'controller' => 'Index',
+                            'action' => 'index'
+                        )
         );
         $router->addRoute('admin', $route);
 
         $route = new Zend_Controller_Router_Route(
-            'admin/dashboard',
-            array(
-                'module' => 'admin',
-                'controller' => 'Index',
-                'action' => 'index'
-            )
+                        'admin/dashboard',
+                        array(
+                            'module' => 'admin',
+                            'controller' => 'Index',
+                            'action' => 'index'
+                        )
         );
         $router->addRoute('adminDashboard', $route);
 
         $route = new Zend_Controller_Router_Route(
-            'admin',
-            array(
-                'module' => 'admin',
-                'controller' => 'Index',
-                'action' => 'login'
-            )
+                        'admin/dashboard/:action/*',
+                        array(
+                            'module' => 'admin',
+                            'controller' => 'Index',
+                            'action' => 'index'
+                        )
+        );
+        $router->addRoute('dashboard', $route);
+
+        $route = new Zend_Controller_Router_Route(
+                        'admin',
+                        array(
+                            'module' => 'admin',
+                            'controller' => 'Index',
+                            'action' => 'login'
+                        )
         );
         $router->addRoute('adminIndex', $route);
 
@@ -129,7 +145,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $autoloader->registerNamespace('ZFDebug');
 
         $options = array(
-            'jquery_path' => '/scripts/jquery-1.5.1.min.js',
+//            'jquery_path' => '/scripts/jquery-1.6.2.min.js',
             'plugins' => array('Variables',
                 'File' => array('basePath' => '/'),
                 'Memory',

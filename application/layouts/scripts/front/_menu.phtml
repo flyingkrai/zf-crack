@@ -1,10 +1,10 @@
 <nav class="menu">
     <div class="menu-cont">
         <ul>
-            <?php foreach ($this->menus as $menu): ?>
+            <?php foreach ($this->menus as $log): ?>
                 <li>
-                    <a href="<?php print ($menu->link) ? $menu->link : '#'; ?>" title="<?php print $menu->title ?>">
-                        <?php print $menu->title ?>
+                    <a href="<?php print ($log->link) ? $log->link : '#'; ?>" title="<?php print $log->title ?>">
+                        <?php print $log->title ?>
                     </a>
                 </li>
             <?php endforeach; ?>

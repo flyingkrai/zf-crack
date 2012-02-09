@@ -7,20 +7,52 @@
         }
     }
 </script>
-<fieldset>
-    <legend>Capa</legend>
-    <form action="/generate" method="post" name="capaForm">
-        <p class="box">
-            <a class="btn-list" href="javascript: gerarCapa();"><span>Gerar Capa</span></a>
-            <input type="submit" class="btn-list" style="display: none;">
-        </p>
-    </form>
-</fieldset>
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a href="/test" target="_blank">Visualizar Capa</a>
+            </dt>
+            <dd>Ver prévia da capa</dd>
+        </dl>
+    </div>
+    <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt>
+
+            <form action="/generate" method="post" name="capaForm">
+                <a href="javascript: gerarCapa();">Gerar Capa</a>
+                <input type="submit" class="btn-list" style="display: none;">
+            </form>
+            </dt>
+            <dd>Gerar página estática para capa</dd>
+        </dl>
+    </div>
+    <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->
 <!-- /CAPA -->
 
-<!-- OPEN GRAPH -->
-<fieldset>
-    <legend>Facebook Open Graph</legend>
-    <?php print $this->form; ?>
-</fieldset>
-<!-- /OPEN GRAPH -->
+<!-- Button -->
+<div class="btn-box">
+    <div class="btn-top"></div>
+    <div class="btn">
+        <dl>
+            <dt><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'Index', 'action' => 'opengraph'), 'dashboard', true) ?>">Facebook OpenGraph</a>
+            </dt>
+            <dd>Editar informações do OpenGraph</dd>
+        </dl>
+    </div>
+    <!-- /btn -->
+    <div class="btn-bottom"></div>
+</div>
+<!-- /Button -->

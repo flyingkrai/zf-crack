@@ -1,12 +1,11 @@
 <?php
 
-
 /**
  * Description of User
  *
  * @author davi
  */
-class Application_Model_User extends Application_Model_Base
+class Application_Model_User extends Application_Model_Base implements Application_Model_BaseInteface
 {
 
     public function __construct()
@@ -23,16 +22,16 @@ class Application_Model_User extends Application_Model_Base
         try {
             $menu = $this->getDbTable();
             $select = $menu->select()
-                ->from($menu, array(new Zend_Db_Expr('count(id) as total')));
+                    ->from($menu, array(new Zend_Db_Expr('count(id) as total')));
             $result = $menu->fetchRow($select);
             if ($result) {
-                $total = (int)$result->total;
+                $total = (int) $result->total;
             }
         } catch (Exception $ex) {
-
+            
         }
 
-        return (int)$total;
+        return (int) $total;
     }
 
     /**
@@ -59,17 +58,21 @@ class Application_Model_User extends Application_Model_Base
 
     /**
      * @param array $data
+     * @return int $id
      */
     public function save($data)
     {
         $data = $this->_filterData($data);
 
-        if (isset($data['id']) && (int)$data['id']) {
+        if (isset($data['id']) && (int) $data['id']) {
+            $id = $data['id'];
             unset($data['username']);
-            $this->getDbTable()->update($data, array('id = ?' => $data['id']));
+            parent::_update($data, array('id = ?' => $data['id']));
         } else {
-            $this->getDbTable()->insert($data);
+            $id = parent::_insert($data);
         }
+
+        return (int) $id;
     }
 
     /**
@@ -77,7 +80,7 @@ class Application_Model_User extends Application_Model_Base
      */
     public function delete($id)
     {
-        $this->getDbTable()->delete(array('id = ?' => $id));
+        parent::_delete(array('id' => $id));
     }
 
     protected function _hashPass($salt, $pass)
@@ -120,6 +123,11 @@ class Application_Model_User extends Application_Model_Base
         }
 
         return $result;
+    }
+
+    public function log($action, $stuff)
+    {
+        ;
     }
 
 }
