@@ -31,6 +31,7 @@ class Menu_IndexController extends Zend_Controller_Action
     {
         $this->view->title .= " - Novo";
 
+        try{
         $request = $this->getRequest();
         $form = new Lib_Form_Menu();
 
@@ -49,6 +50,11 @@ class Menu_IndexController extends Zend_Controller_Action
         }
 
         $this->view->form = $form;
+
+        }catch(Exception $ex){
+            print $ex->getMessage();
+            exit;
+        }
     }
 
     public function editAction()

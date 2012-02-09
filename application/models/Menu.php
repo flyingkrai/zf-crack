@@ -117,7 +117,7 @@ class Application_Model_Menu extends Application_Model_Base
                     break;
                 case 'sequence':
                 case 'order':
-                    $result['sequence'] = $value;
+                    $result['sequence'] = (int)$value;
                     break;
             }
         }

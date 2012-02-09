@@ -34,6 +34,17 @@ class Timeline_IndexController extends Zend_Controller_Action
         return false;
     }
 
+    /**
+     * @param string $image image relative path
+     */
+    protected function _deleteImage($image)
+    {
+        $img = explode('.', $image);
+
+        @unlink(UPLOAD_PATH . $img[0] . '_272x272.' . $img[1]);
+        @unlink(UPLOAD_PATH . $image);
+    }
+
     public function init()
     {
         $this->model = new Application_Model_Timeline();
@@ -137,6 +148,7 @@ class Timeline_IndexController extends Zend_Controller_Action
 
         if ($request->getParam('confirm')) {
             try {
+                $this->_deleteImage($timeline->image);
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Evento removido');
@@ -166,6 +178,7 @@ class Timeline_IndexController extends Zend_Controller_Action
 
         if ($request->getParam('confirm')) {
             try {
+                $this->_deleteImage($timeline->image);
                 $this->model->deleteImage($id);
 
                 $this->_helper->FlashMessenger('Imagem removida');
