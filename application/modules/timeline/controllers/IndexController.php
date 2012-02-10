@@ -21,7 +21,8 @@ class Timeline_IndexController extends Zend_Controller_Action
 
         if ($upload->isUploaded()) {
             $fileInfo = $upload->getFileInfo();
-            $fileType = str_replace('image/', '', $fileInfo['image']['type']);
+            $fileType = explode('.', $fileInfo['image']['name']);
+            $fileType = array_pop($fileType);;
             $fileName = $this->_helper->fileUpload->generateFileName($fileType);
             $filePath = $this->_helper->fileUpload('timeline');
 

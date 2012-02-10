@@ -12,7 +12,6 @@ class Lib_Form_Login extends Zend_Form
 
         $lengthValidator = new Zend_Validate_StringLength();
         $lengthValidator->setMin(4);
-        $lengthValidator->setMax(10);
         $lengthValidator->setMessage('Login inválido');
 
         // Username

@@ -32,6 +32,7 @@ class Lib_Extra_Image extends Lib_Extra_Source_ImageLib
                 return $this->display_errors();
             }
         }
+        @chmod($path . $banner_resized, 0777);
 
         return UPLOAD_URL . $banner_resized;
     }

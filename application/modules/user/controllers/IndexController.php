@@ -135,14 +135,16 @@ class User_IndexController extends Zend_Controller_Action
             $this->_helper->FlashMessenger('ID do usuário não informado');
             return $this->_redirect(BASE_URL .  'admin/user');
         }
-        if ($id == 1) {
-            $this->_helper->FlashMessenger('Usuário Administrador não pode ser removido');
-            return $this->_redirect(BASE_URL .  'admin/user');
-        }
 
         $user = $this->model->find($id);
         if (!$user) {
             $this->_helper->FlashMessenger('Usuário não encontrado');
+            return $this->_redirect(BASE_URL .  'admin/user');
+        }
+        
+        
+        if ($user->is_admin) {
+            $this->_helper->FlashMessenger('Usuário Administrador não pode ser removido');
             return $this->_redirect(BASE_URL .  'admin/user');
         }
 

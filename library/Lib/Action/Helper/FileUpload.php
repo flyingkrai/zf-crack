@@ -24,12 +24,12 @@ class Lib_Action_Helper_FileUpload extends Zend_Controller_Action_Helper_Abstrac
     }
 
     /**
-     * @param string $fileName
+     * @param string $fileType
      * @return string
      */
-    public function generateFileName($fileName)
+    public function generateFileName($fileType)
     {
-        return time() . uniqid() . ".$fileName";
+        return time() . uniqid() . ".$fileType";
     }
 
     protected function create($base, $subdirs)
