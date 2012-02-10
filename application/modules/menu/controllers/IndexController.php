@@ -42,7 +42,7 @@ class Menu_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('Cadastro do menu <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
-                    return $this->_redirect('admin/menu');
+                    return $this->_redirect(BASE_URL . 'admin/menu');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -63,13 +63,13 @@ class Menu_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do menu não informado');
-            return $this->_redirect('admin/menu');
+            return $this->_redirect(BASE_URL . 'admin/menu');
         }
 
         $menu = $this->model->find($id);
         if (!$menu) {
             $this->_helper->FlashMessenger('Menu não encontrado');
-            return $this->_redirect('admin/menu');
+            return $this->_redirect(BASE_URL . 'admin/menu');
         }
 
         $form = new Lib_Form_Menu();
@@ -79,7 +79,7 @@ class Menu_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-                    return $this->_redirect('admin/menu');
+                    return $this->_redirect(BASE_URL . 'admin/menu');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -104,13 +104,13 @@ class Menu_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do menu não informado');
-            return $this->_redirect('admin/menu');
+            return $this->_redirect(BASE_URL . 'admin/menu');
         }
 
         $menu = $this->model->find($id);
         if (!$menu) {
             $this->_helper->FlashMessenger('Menu não encontrado');
-            return $this->_redirect('admin/menu');
+            return $this->_redirect(BASE_URL . 'admin/menu');
         }
 
         if ($request->getParam('confirm')) {
@@ -118,7 +118,7 @@ class Menu_IndexController extends Zend_Controller_Action
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Menu removido');
-                return $this->_redirect('admin/menu');
+                return $this->_redirect(BASE_URL . 'admin/menu');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }

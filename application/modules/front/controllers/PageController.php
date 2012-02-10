@@ -7,22 +7,25 @@ class Front_PageController extends Zend_Controller_Action
     {
         $menuModel = new Application_Model_Menu();
         $timelineModel = new Application_Model_Timeline();
+        
+        $menus = $menuModel->findAllOrdened();
+        $timeline = $timelineModel->getFormatedTimeline();
 
-        $this->view->menus = $menuModel->findAllOrdened();
-        $this->view->timeline = $timelineModel->getFormatedTimeline();
+        $this->view->menus = ($menus->count() > 0) ? $menus : array();
+        $this->view->timeline = $timeline;
     }
 
     public function indexAction()
     {
         if ($this->getRequest()->getParam('page') != 'test' || !Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/');
+            $this->_redirect(BASE_URL);
         }
     }
 
     public function generateAction()
     {
         if (!$this->getRequest()->isPost()) {
-            $this->_redirect('/');
+            $this->_redirect(BASE_URL);
         }
         $log = new Application_Model_Log();
 
@@ -39,7 +42,7 @@ class Front_PageController extends Zend_Controller_Action
             $this->_helper->FlashMessenger($exc->getMessage());
         }
 
-        $this->_redirect('admin/dashboard');
+        $this->_redirect(BASE_URL .  'admin/dashboard');
     }
 
 }

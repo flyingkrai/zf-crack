@@ -102,11 +102,13 @@ class Application_Model_Timeline extends Application_Model_Base implements Appli
         $table = $this->getDbTable();
         $select = $table->select()->order('date DESC');
         $timelines = $table->fetchAll($select);
-        foreach ($timelines as $timeline) {
-            $timeline->date = new DateTime($timeline->date, new DateTimeZone('America/Fortaleza'));
-            $formated[$timeline->date->format('Y')][] = $timeline;
+        if ($timelines->count() > 0) {
+            foreach ($timelines as $timeline) {
+                $timeline->date = new DateTime($timeline->date, new DateTimeZone('America/Fortaleza'));
+                $formated[$timeline->date->format('Y')][] = $timeline;
+            }
+            krsort($formated);
         }
-        krsort($formated);
 
         return $formated;
     }

@@ -12,7 +12,7 @@
     <div class="btn-top"></div>
     <div class="btn">
         <dl>
-            <dt><a href="/test" target="_blank">Visualizar Capa</a>
+            <dt><a href="<?php print $this->baseUrl('test'); ?>" target="_blank">Visualizar Capa</a>
             </dt>
             <dd>Ver prévia da capa</dd>
         </dl>
@@ -28,7 +28,7 @@
         <dl>
             <dt>
 
-            <form action="/generate" method="post" name="capaForm">
+            <form action="<?php print $this->baseUrl('generate'); ?>" method="post" name="capaForm">
                 <a href="javascript: gerarCapa();">Gerar Capa</a>
                 <input type="submit" class="btn-list" style="display: none;">
             </form>

@@ -54,7 +54,7 @@ class Admin_IndexController extends Zend_Controller_Action
     protected function _hasAuth()
     {
         if (Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('admin/dashboard');
+            $this->_redirect(BASE_URL . 'admin/dashboard');
         }
     }
 
@@ -97,7 +97,7 @@ HTML;
             if ($form->isValid($_POST)) {
                 if ($this->_process($form->getValues())) {
                     // We're authenticated! Redirect to the home page
-                    $this->_redirect('admin/dashboard');
+                    $this->_redirect(BASE_URL . 'admin/dashboard');
                 }
             }
         }
@@ -107,7 +107,7 @@ HTML;
     public function logoutAction()
     {
         @Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('admin/');
+        $this->_redirect(BASE_URL . 'admin/');
     }
 
     public function opengraphAction()
@@ -125,7 +125,7 @@ HTML;
                     $this->_generateOpenGraph($_POST);
 
                     $this->_helper->FlashMessenger('Open Graph Atualizado');
-                    $this->_redirect('admin/dashboard');
+                    $this->_redirect(BASE_URL . 'admin/dashboard');
                 } catch (Exception $ex) {
                     $this->_helper->FlashMessenger($ex->getMessage());
                 }

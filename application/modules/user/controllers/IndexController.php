@@ -69,7 +69,7 @@ class User_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('Cadastro do usuário <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('name') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
-                    return $this->_redirect('admin/user');
+                    return $this->_redirect(BASE_URL .  'admin/user');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -87,13 +87,13 @@ class User_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do usuário não informado');
-            return $this->_redirect('admin/user');
+            return $this->_redirect(BASE_URL .  'admin/user');
         }
 
         $user = $this->model->find($id);
         if (!$user) {
             $this->_helper->FlashMessenger('Usuário não encontrado');
-            return $this->_redirect('admin/user');
+            return $this->_redirect(BASE_URL .  'admin/user');
         }
 
         $form = new Lib_Form_User();
@@ -105,10 +105,10 @@ class User_IndexController extends Zend_Controller_Action
 
                     if ($this->_isAdmin()) {
                         $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('name') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-                        return $this->_redirect('admin/user');
+                        return $this->_redirect(BASE_URL .  'admin/user');
                     } else {
                         $this->_helper->FlashMessenger('Seu cadastro foi atualizado');
-                        return $this->_redirect('admin/dashboard');
+                        return $this->_redirect(BASE_URL .  'admin/dashboard');
                     }
                 }
             } catch (Exception $ex) {
@@ -133,17 +133,17 @@ class User_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do usuário não informado');
-            return $this->_redirect('admin/user');
+            return $this->_redirect(BASE_URL .  'admin/user');
         }
         if ($id == 1) {
             $this->_helper->FlashMessenger('Usuário Administrador não pode ser removido');
-            return $this->_redirect('admin/user');
+            return $this->_redirect(BASE_URL .  'admin/user');
         }
 
         $user = $this->model->find($id);
         if (!$user) {
             $this->_helper->FlashMessenger('Usuário não encontrado');
-            return $this->_redirect('admin/user');
+            return $this->_redirect(BASE_URL .  'admin/user');
         }
 
         if ($request->getParam('confirm')) {
@@ -151,7 +151,7 @@ class User_IndexController extends Zend_Controller_Action
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Usuário removida');
-                return $this->_redirect('admin/user');
+                return $this->_redirect(BASE_URL .  'admin/user');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }

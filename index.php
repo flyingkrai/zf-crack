@@ -1,12 +1,16 @@
 <?php
 
+// Define base url fix
+defined('BASE_URL_FIX')
+        || define('BASE_URL_FIX', '/');
+
 // Define base url
 defined('BASE_URL')
-        || define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+        || define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST'] . BASE_URL_FIX);
 
 // Define url to upload directory
 defined('UPLOAD_URL')
-        || define('UPLOAD_URL', BASE_URL . '/public/upload');
+        || define('UPLOAD_URL', BASE_URL . 'public/upload');
 
 // Define path to upload directory
 defined('UPLOAD_PATH')
@@ -22,7 +26,7 @@ defined('APPLICATION_ENV')
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
-            realpath(APPLICATION_PATH . '/library'),
+            realpath(APPLICATION_PATH . '/../library'),
             get_include_path(),
         )));
 

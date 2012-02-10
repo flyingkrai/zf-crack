@@ -25,7 +25,7 @@ class Log_IndexController extends Zend_Controller_Action
     {
         if (!$this->_isAdmin()) {
             $this->_helper->FlashMessenger('Você não tem acesso a esta funcionalidade');
-            return $this->_redirect('admin/dashboard');
+            return $this->_redirect(BASE_URL .  'admin/dashboard');
         }
     }
 
@@ -54,13 +54,13 @@ class Log_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do menu não informado');
-            return $this->_redirect('admin/menu');
+            return $this->_redirect(BASE_URL .  'admin/menu');
         }
 
         $log = $this->model->find($id);
         if (!$log) {
             $this->_helper->FlashMessenger('Log não encontrado');
-            return $this->_redirect('admin/log');
+            return $this->_redirect(BASE_URL .  'admin/log');
         }
         $user = $log->findParentRow('Application_Model_DbTable_User');
 

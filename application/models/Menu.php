@@ -57,7 +57,7 @@ class Application_Model_Menu extends Application_Model_Base implements Applicati
     }
 
     /**
-     * @return array
+     * @return Zend_Db_Table_Rowset_Abstract
      */
     public function findAllOrdened()
     {

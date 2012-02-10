@@ -65,7 +65,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 
         $route = new Zend_Controller_Router_Route(
-                        ':page',
+                        BASE_URL_FIX . ':page',
                         array(
                             'module' => 'front',
                             'controller' => 'Page',
@@ -75,7 +75,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('frontend', $route);
 
         $route = new Zend_Controller_Router_Route(
-                        'generate',
+                        BASE_URL_FIX . 'generate',
                         array(
                             'module' => 'front',
                             'controller' => 'Page',
@@ -85,7 +85,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('generate', $route);
 
         $route = new Zend_Controller_Router_Route(
-                        'admin/:module/:action/*',
+                        BASE_URL_FIX . 'admin/:module/:action/*',
                         array(
                             'controller' => 'Index',
                             'action' => 'index'
@@ -94,7 +94,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('admin', $route);
 
         $route = new Zend_Controller_Router_Route(
-                        'admin/dashboard',
+                        BASE_URL_FIX . 'admin/dashboard',
                         array(
                             'module' => 'admin',
                             'controller' => 'Index',
@@ -104,7 +104,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('adminDashboard', $route);
 
         $route = new Zend_Controller_Router_Route(
-                        'admin/dashboard/:action/*',
+                        BASE_URL_FIX . 'admin/dashboard/:action/*',
                         array(
                             'module' => 'admin',
                             'controller' => 'Index',
@@ -114,7 +114,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('dashboard', $route);
 
         $route = new Zend_Controller_Router_Route(
-                        'admin',
+                        BASE_URL_FIX . 'admin',
                         array(
                             'module' => 'admin',
                             'controller' => 'Index',

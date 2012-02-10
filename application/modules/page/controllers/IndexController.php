@@ -42,7 +42,7 @@ class Page_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('Cadastro da página <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
-                    return $this->_redirect('admin/page');
+                    return $this->_redirect(BASE_URL .  'admin/page');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -60,13 +60,13 @@ class Page_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID da página não informado');
-            return $this->_redirect('admin/page');
+            return $this->_redirect(BASE_URL .  'admin/page');
         }
 
         $page = $this->model->find($id);
         if (!$page) {
             $this->_helper->FlashMessenger('Página não encontrado');
-            return $this->_redirect('admin/page');
+            return $this->_redirect(BASE_URL .  'admin/page');
         }
 
         $form = new Lib_Form_Page();
@@ -76,7 +76,7 @@ class Page_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-                    return $this->_redirect('admin/page');
+                    return $this->_redirect(BASE_URL .  'admin/page');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -101,13 +101,13 @@ class Page_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID da página não informado');
-            return $this->_redirect('admin/page');
+            return $this->_redirect(BASE_URL .  'admin/page');
         }
 
         $page = $this->model->find($id);
         if (!$page) {
             $this->_helper->FlashMessenger('Página não encontrada');
-            return $this->_redirect('admin/page');
+            return $this->_redirect(BASE_URL .  'admin/page');
         }
 
         if ($request->getParam('confirm')) {
@@ -115,7 +115,7 @@ class Page_IndexController extends Zend_Controller_Action
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Página removida');
-                return $this->_redirect('admin/page');
+                return $this->_redirect(BASE_URL .  'admin/page');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }

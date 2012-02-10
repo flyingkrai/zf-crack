@@ -1,14 +1,16 @@
 <nav class="menu">
     <div class="menu-cont">
-        <ul>
-            <?php foreach ($this->menus as $log): ?>
-                <li>
-                    <a href="<?php print ($log->link) ? $log->link : '#'; ?>" title="<?php print $log->title ?>">
-                        <?php print $log->title ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?php if ($this->menus): ?>
+            <ul>
+                <?php foreach ($this->menus as $log): ?>
+                    <li>
+                        <a href="<?php print ($log->link) ? $log->link : '#'; ?>" title="<?php print $log->title ?>">
+                            <?php print $log->title ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
         <div class="clear"></div>
     </div>
 </nav>

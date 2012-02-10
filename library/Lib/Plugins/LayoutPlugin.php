@@ -42,6 +42,7 @@ class Lib_Plugins_LayoutPlugin extends Zend_Controller_Plugin_Abstract
         $urlHelper = $view->getHelper('BaseUrl');
         /** @var Zend_View_Helper_BaseUrl $urlHelper */
         $view->headTitle('Admin')->setSeparator(' > ');
+        $urlHelper->setBaseUrl(BASE_URL);
 
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/reset.css'), 'screen, projection');
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/admin/main.css'), 'screen, projection');
@@ -71,6 +72,7 @@ class Lib_Plugins_LayoutPlugin extends Zend_Controller_Plugin_Abstract
         $urlHelper = $view->getHelper('BaseUrl');
         /** @var Zend_View_Helper_BaseUrl $urlHelper */
         $view->headTitle('Crack no Ceará: Uma epidemia | Jangadeiro Online')->setSeparator(' | ');
+        $urlHelper->setBaseUrl(BASE_URL);
 
         $view->headLink()->appendStylesheet($urlHelper->baseUrl('public/styles/front/style.css'));
 

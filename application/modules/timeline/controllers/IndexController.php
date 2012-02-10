@@ -81,9 +81,9 @@ class Timeline_IndexController extends Zend_Controller_Action
 
                     $this->_helper->FlashMessenger('Cadastro de <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
                     if ($upload) {
-                        return $this->_redirect('admin/timeline/crop/id/' . $id);
+                        return $this->_redirect(BASE_URL .  'admin/timeline/crop/id/' . $id);
                     } else {
-                        return $this->_redirect('admin/timeline');
+                        return $this->_redirect(BASE_URL .  'admin/timeline');
                     }
                 }
             } catch (Exception $ex) {
@@ -102,13 +102,13 @@ class Timeline_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do evento não informado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $timeline = $this->model->find($id);
         if (!$timeline) {
             $this->_helper->FlashMessenger('Evento não encontrado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $form = new Lib_Form_Timeline();
@@ -125,9 +125,9 @@ class Timeline_IndexController extends Zend_Controller_Action
 
                     $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('title') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
                     if ($upload) {
-                        return $this->_redirect('admin/timeline/crop/id/' . $id);
+                        return $this->_redirect(BASE_URL .  'admin/timeline/crop/id/' . $id);
                     } else {
-                        return $this->_redirect('admin/timeline');
+                        return $this->_redirect(BASE_URL .  'admin/timeline');
                     }
                 }
             } catch (Exception $ex) {
@@ -154,13 +154,13 @@ class Timeline_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do evento não informado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $timeline = $this->model->find($id);
         if (!$timeline) {
             $this->_helper->FlashMessenger('Evento não encontrado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         if ($request->getParam('confirm')) {
@@ -169,7 +169,7 @@ class Timeline_IndexController extends Zend_Controller_Action
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Evento removido');
-                return $this->_redirect('admin/timeline');
+                return $this->_redirect(BASE_URL .  'admin/timeline');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }
@@ -186,13 +186,13 @@ class Timeline_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do evento não informado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $timeline = $this->model->find($id);
         if (!$timeline) {
             $this->_helper->FlashMessenger('Evento não encontrado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         if ($request->getParam('confirm')) {
@@ -201,7 +201,7 @@ class Timeline_IndexController extends Zend_Controller_Action
                 $this->model->deleteImage($id);
 
                 $this->_helper->FlashMessenger('Imagem removida');
-                return $this->_redirect('admin/timeline');
+                return $this->_redirect(BASE_URL .  'admin/timeline');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }
@@ -218,13 +218,13 @@ class Timeline_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do evento não informado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $timeline = $this->model->find($id);
         if (!$timeline) {
             $this->_helper->FlashMessenger('Evento não encontrado');
-            return $this->_redirect('admin/timeline');
+            return $this->_redirect(BASE_URL .  'admin/timeline');
         }
 
         $form = new Lib_Form_Crop();
@@ -234,7 +234,7 @@ class Timeline_IndexController extends Zend_Controller_Action
                     $image = $this->_helper->Image->cropImg(UPLOAD_PATH . $_POST['image'], $_POST['w'], $_POST['h'], $_POST['x'], $_POST['y']);
 
                     $this->_helper->FlashMessenger('Imagem <strong><i>&OpenCurlyDoubleQuote;' . $timeline->title . '&CloseCurlyDoubleQuote;</i></strong> salva');
-                    return $this->_redirect('admin/timeline');
+                    return $this->_redirect(BASE_URL .  'admin/timeline');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
