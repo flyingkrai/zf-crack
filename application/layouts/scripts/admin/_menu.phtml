@@ -24,7 +24,7 @@
             <span>Usuários</span>
         </a>
     </li>
-    <?php if (Zend_Auth::getInstance()->getIdentity()->is_admin): ?>
+    <?php if ($this->isAdmin): ?>
     <li>
         <a href="<?php echo $this->url(array('module' => 'log', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">
             <span>Logs</span>

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @author Davi Alves
+ */
 class User_IndexController extends Zend_Controller_Action
 {
 
@@ -9,30 +12,18 @@ class User_IndexController extends Zend_Controller_Action
     protected $model;
 
     /**
-     * @return stdClass
+     * @param string $role
+     * @return void
      */
-    protected function _getCurrentUser()
+    protected function _changedOwnRole($role)
     {
-        return Zend_Auth::getInstance()->getIdentity();
-    }
+        if (!$role) {
+            return;
+        }
 
-    /**
-     * @return bool
-     */
-    protected function _isAdmin()
-    {
-        $user = $this->_getCurrentUser();
-        return ($user->is_admin);
-    }
-
-    /**
-     * Check if the current user CAN TOUCH THIS
-     */
-    protected function _canTouchThis()
-    {
-        if (!$this->_isAdmin()) {
-            $user = $this->_getCurrentUser();
-            $this->_forward('edit', null, null, array('id' => $user->id));
+        $user = $this->_helper->auth->getCurrentUser();
+        if ($user->role != $role) {
+            $this->_redirect(BASE_URL . 'admin/admin/logout');
         }
     }
 
@@ -47,7 +38,6 @@ class User_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->_canTouchThis();
         $this->view->title .= " - Listar";
 
         $users = $this->model->findAll();
@@ -56,7 +46,6 @@ class User_IndexController extends Zend_Controller_Action
 
     public function newAction()
     {
-        $this->_canTouchThis();
         $this->view->title .= " - Novo";
 
         $request = $this->getRequest();
@@ -69,7 +58,7 @@ class User_IndexController extends Zend_Controller_Action
                     $this->model->save($_POST);
 
                     $this->_helper->FlashMessenger('Cadastro do usuário <strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('name') . '&CloseCurlyDoubleQuote;</i></strong> realizado');
-                    return $this->_redirect(BASE_URL .  'admin/user');
+                    return $this->_redirect(BASE_URL . 'admin/user');
                 }
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
@@ -87,28 +76,33 @@ class User_IndexController extends Zend_Controller_Action
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do usuário não informado');
-            return $this->_redirect(BASE_URL .  'admin/user');
+            return $this->_redirect(BASE_URL . 'admin/user');
         }
 
         $user = $this->model->find($id);
         if (!$user) {
             $this->_helper->FlashMessenger('Usuário não encontrado');
-            return $this->_redirect(BASE_URL .  'admin/user');
+            return $this->_redirect(BASE_URL . 'admin/user');
         }
 
         $form = new Lib_Form_User();
         $form->getElement('username')->setAttrib('readonly', true);
+        if (!$this->_helper->auth->isAdmin()) {
+            $form->getElement('role')->setAttrib('disabled', true);
+        }
         if ($request->isPost()) {
             try {
                 if ($form->isValid($_POST)) {
                     $this->model->save($_POST);
+                    $this->_changedOwnRole($_POST['role']);
 
-                    if ($this->_isAdmin()) {
+
+                    if ($this->_helper->auth->isAdmin()) {
                         $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('name') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');
-                        return $this->_redirect(BASE_URL .  'admin/user');
+                        return $this->_redirect(BASE_URL . 'admin/user');
                     } else {
                         $this->_helper->FlashMessenger('Seu cadastro foi atualizado');
-                        return $this->_redirect(BASE_URL .  'admin/dashboard');
+                        return $this->_redirect(BASE_URL . 'admin/dashboard');
                     }
                 }
             } catch (Exception $ex) {
@@ -120,6 +114,9 @@ class User_IndexController extends Zend_Controller_Action
                 'name' => $user->name,
                 'username' => $user->username,
                 'email' => $user->email,
+                'role' => $user->role,
+                'password' => '',
+                'password_confirm' => ''
             ));
         }
 
@@ -128,24 +125,22 @@ class User_IndexController extends Zend_Controller_Action
 
     public function deleteAction()
     {
-        $this->_canTouchThis();
         $request = $this->getRequest();
         $id = $request->getParam('id');
         if (!$id) {
             $this->_helper->FlashMessenger('ID do usuário não informado');
-            return $this->_redirect(BASE_URL .  'admin/user');
+            return $this->_redirect(BASE_URL . 'admin/user');
         }
 
         $user = $this->model->find($id);
         if (!$user) {
             $this->_helper->FlashMessenger('Usuário não encontrado');
-            return $this->_redirect(BASE_URL .  'admin/user');
+            return $this->_redirect(BASE_URL . 'admin/user');
         }
-        
-        
-        if ($user->is_admin) {
+
+        if ($this->_helper->auth->isAdmin($user)) {
             $this->_helper->FlashMessenger('Usuário Administrador não pode ser removido');
-            return $this->_redirect(BASE_URL .  'admin/user');
+            return $this->_redirect(BASE_URL . 'admin/user');
         }
 
         if ($request->getParam('confirm')) {
@@ -153,7 +148,7 @@ class User_IndexController extends Zend_Controller_Action
                 $this->model->delete($id);
 
                 $this->_helper->FlashMessenger('Usuário removida');
-                return $this->_redirect(BASE_URL .  'admin/user');
+                return $this->_redirect(BASE_URL . 'admin/user');
             } catch (Exception $ex) {
                 $this->_helper->FlashMessenger($ex->getMessage());
             }
@@ -162,12 +157,5 @@ class User_IndexController extends Zend_Controller_Action
         $this->view->user = $user;
     }
 
-
 }
-
-
-
-
-
-
 

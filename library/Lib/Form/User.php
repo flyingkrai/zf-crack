@@ -5,6 +5,7 @@
  */
 class Lib_Form_User extends Zend_Form
 {
+
     public function init()
     {
         // Config
@@ -61,6 +62,20 @@ class Lib_Form_User extends Zend_Form
                 ),
                 'EmailAddress'
             )
+        ));
+
+        // Role
+        $this->addElement('select', 'role', array(
+            'label' => 'Nível de acesso',
+            'class' => 'input-text',
+            'multiOptions' => array(
+                'admin' => 'Admin',
+                'colaborador' => 'Colaborador',
+                'editor' => 'Editor',
+                'usuario' => 'Usuário'
+            ),
+            'required' => false,
+            'filters' => array('StringTrim', 'StringToLower')
         ));
 
         // Login
@@ -124,4 +139,5 @@ class Lib_Form_User extends Zend_Form
             'salt' => 'user_form',
         ));
     }
+
 }

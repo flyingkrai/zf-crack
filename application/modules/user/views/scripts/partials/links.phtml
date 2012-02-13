@@ -1,34 +1,34 @@
-<?php if (Zend_Auth::getInstance()->getIdentity()->is_admin): ?>
-<!-- Button -->
-<div class="btn-box">
-    <div class="btn-top"></div>
-    <div class="btn">
-        <dl>
-            <dt><a
-                href="<?php echo $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">Listar</a>
+<?php if ($this->isAdmin): ?>
+    <!-- Button -->
+    <div class="btn-box">
+        <div class="btn-top"></div>
+        <div class="btn">
+            <dl>
+                <dt><a
+                    href="<?php echo $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'index'), 'admin', true) ?>">Listar</a>
                 (<?php print $this->totalUsers; ?>)
-            </dt>
-            <dd>Lista de usuários cadastrados</dd>
-        </dl>
+                </dt>
+                <dd>Lista de usuários cadastrados</dd>
+            </dl>
+        </div>
+        <!-- /btn -->
+        <div class="btn-bottom"></div>
     </div>
-    <!-- /btn -->
-    <div class="btn-bottom"></div>
-</div>
-<!-- /Button -->
-<!-- Button -->
-<div class="btn-box">
-    <div class="btn-top"></div>
-    <div class="btn">
-        <dl>
-            <dt><a
-                href="<?php echo $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'new'), 'admin', true) ?>">Novo</a>
-            </dt>
-            <dd>Cadastrar novo Usuário</dd>
-        </dl>
+    <!-- /Button -->
+    <!-- Button -->
+    <div class="btn-box">
+        <div class="btn-top"></div>
+        <div class="btn">
+            <dl>
+                <dt><a
+                    href="<?php echo $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'new'), 'admin', true) ?>">Novo</a>
+                </dt>
+                <dd>Cadastrar novo Usuário</dd>
+            </dl>
+        </div>
+        <!-- /btn -->
+        <div class="btn-bottom"></div>
     </div>
-    <!-- /btn -->
-    <div class="btn-bottom"></div>
-</div>
 <?php endif; ?>
 <!-- /Button -->
 <div class="fix"></div>

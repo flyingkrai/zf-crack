@@ -14,6 +14,7 @@ class Admin_IndexController extends Zend_Controller_Action
      * @return bool
      *
      *
+     *
      */
     protected function _process($values)
     {
@@ -34,8 +35,6 @@ class Admin_IndexController extends Zend_Controller_Action
 
     /**
      * @return Zend_Auth_Adapter_DbTable
-     *
-     *
      */
     protected function _getAuthAdapter()
     {
@@ -60,7 +59,6 @@ class Admin_IndexController extends Zend_Controller_Action
 
     /**
      * @param array $data
-     *
      */
     protected function _generateOpenGraph($data)
     {
@@ -82,6 +80,7 @@ HTML;
 
     public function indexAction()
     {
+        
     }
 
     public function loginAction()
@@ -144,5 +143,9 @@ HTML;
         $this->view->form = $form;
     }
 
-}
+    public function errorAction()
+    {
+        $this->view->error = $this->getRequest()->getParam('error');
+    }
 
+}

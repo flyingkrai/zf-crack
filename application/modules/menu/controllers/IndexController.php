@@ -127,20 +127,5 @@ class Menu_IndexController extends Zend_Controller_Action
         $this->view->menu = $menu;
     }
 
-    public function logoutAction()
-    {
-        // action body
-    }
-
-    public function loginAction()
-    {
-        // action body
-    }
-
 
 }
-
-
-
-
-

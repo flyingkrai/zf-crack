@@ -7,7 +7,7 @@ class Front_PageController extends Zend_Controller_Action
     {
         $menuModel = new Application_Model_Menu();
         $timelineModel = new Application_Model_Timeline();
-        
+
         $menus = $menuModel->findAllOrdened();
         $timeline = $timelineModel->getFormatedTimeline();
 
@@ -17,7 +17,7 @@ class Front_PageController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        if ($this->getRequest()->getParam('page') != 'test' || !Zend_Auth::getInstance()->hasIdentity()) {
+        if ($this->getRequest()->getParam('page') != 'test' || !$this->_helper->auth->hasAuth()) {
             $this->_redirect(BASE_URL);
         }
     }
@@ -42,7 +42,7 @@ class Front_PageController extends Zend_Controller_Action
             $this->_helper->FlashMessenger($exc->getMessage());
         }
 
-        $this->_redirect(BASE_URL .  'admin/dashboard');
+        $this->_redirect(BASE_URL . 'admin/dashboard');
     }
 
 }

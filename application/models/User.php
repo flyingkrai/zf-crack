@@ -109,6 +109,9 @@ class Application_Model_User extends Application_Model_Base implements Applicati
                 case 'name':
                     $result['name'] = $value;
                     break;
+                case 'role':
+                    $result['role'] = $value;
+                    break;
                 case 'username':
                     $result['username'] = $value;
                     break;
@@ -123,11 +126,6 @@ class Application_Model_User extends Application_Model_Base implements Applicati
         }
 
         return $result;
-    }
-
-    public function log($action, $stuff)
-    {
-        ;
     }
 
 }

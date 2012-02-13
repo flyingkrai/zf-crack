@@ -38,7 +38,7 @@
                    style="margin-right: 10px" title="Editar">
                     <img src="<?php print $this->baseUrl('public/styles/design/ico-edit.gif');?>"/>
                 </a>
-                <?php if (!$user->is_admin): ?>
+                <?php if ($user->role != 'admin'): ?>
                 <a href="<?php print $this->url(array('module' => 'user', 'controller' => 'Index', 'action' => 'delete', 'id' => $user->id), 'admin', true); ?>"
                    style="margin-right: 10px" title="Deletar">
                     <img src="<?php print $this->baseUrl('public/styles/design/ico-delete.gif');?>"/>

@@ -22,6 +22,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Controller_Action_HelperBroker::addHelper(
                 new Lib_Action_Helper_Image()
         );
+        Zend_Controller_Action_HelperBroker::addHelper(
+                new Lib_Action_Helper_Auth()
+        );
     }
 
     protected function _initViewHelpers()
@@ -50,7 +53,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front = Zend_Controller_Front::getInstance();
 
         $front->registerPlugin(
-                new Lib_Plugins_AuthPlugin()
+                new Lib_Plugins_AclPlugin()
         );
         $front->registerPlugin(
                 new Lib_Plugins_LayoutPlugin()
