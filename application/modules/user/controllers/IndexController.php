@@ -15,14 +15,14 @@ class User_IndexController extends Zend_Controller_Action
      * @param string $role
      * @return void
      */
-    protected function _changedOwnRole($role)
+    protected function _changedOwnRole($data)
     {
-        if (!$role) {
+        if (!$data['role']) {
             return;
         }
 
         $user = $this->_helper->auth->getCurrentUser();
-        if ($user->role != $role) {
+        if ($user->role != $role && $data['id'] == $user->id) {
             $this->_redirect(BASE_URL . 'admin/admin/logout');
         }
     }
@@ -50,6 +50,8 @@ class User_IndexController extends Zend_Controller_Action
 
         $request = $this->getRequest();
         $form = new Lib_Form_User();
+        $form->getElement('password')->setRequired();
+        $form->getElement('password_confirm')->setRequired();
 
         if ($request->isPost()) {
             try {
@@ -94,8 +96,7 @@ class User_IndexController extends Zend_Controller_Action
             try {
                 if ($form->isValid($_POST)) {
                     $this->model->save($_POST);
-                    $this->_changedOwnRole($_POST['role']);
-
+                    $this->_changedOwnRole($_POST);
 
                     if ($this->_helper->auth->isAdmin()) {
                         $this->_helper->FlashMessenger('<strong><i>&OpenCurlyDoubleQuote;' . $form->getValue('name') . '&CloseCurlyDoubleQuote;</i></strong> atualizado');

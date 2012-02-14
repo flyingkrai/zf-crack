@@ -92,14 +92,14 @@ class Lib_Form_User extends Zend_Form
                 )
             )
         ));
-
+        
         $passValidation = new Lib_Form_Validate_PasswordConfirmation();
         // Password
         $this->addElement('password', 'password', array(
             'label' => 'Senha *',
             'class' => 'input-text-02',
             'size' => '60',
-            'required' => true,
+            'required' => false,
             'filters' => array('StringTrim'),
             'validators' => array(
                 array(
@@ -115,7 +115,7 @@ class Lib_Form_User extends Zend_Form
             'label' => 'Confirmação *',
             'class' => 'input-text-02',
             'size' => '60',
-            'required' => true,
+            'required' => false,
             'filters' => array('StringTrim'),
             'validators' => array(
                 array(

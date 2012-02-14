@@ -119,8 +119,10 @@ class Application_Model_User extends Application_Model_Base implements Applicati
                     $result['email'] = $value;
                     break;
                 case 'password':
-                    $result['salt'] = $this->_generateSalt();
-                    $result['password'] = $this->_hashPass($result['salt'], $value);
+                    if ($value) {
+                        $result['salt'] = $this->_generateSalt();
+                        $result['password'] = $this->_hashPass($result['salt'], $value);
+                    }
                     break;
             }
         }
