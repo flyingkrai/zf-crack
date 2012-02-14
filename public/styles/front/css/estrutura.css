@@ -103,7 +103,7 @@ header .crack a { background:url(../img/crack.png) no-repeat 0 0 transparent; he
 .menu    { background-color:#EE7526; display:block; margin:0 auto; text-shadow:1px 1px 0 rgba(0,0,0,.2); width:100%; }
 .menu-cont { margin:0 auto; padding:15px 0; width:960px; }
 .menu ul { border-left:6px solid #F88A37; color:#FFF; display:block; margin:0 auto; padding:0; }
-.menu li { display:inline-block; font-size:20px; text-transform:uppercase; padding:0; }
+.menu li { display:block; float:left; font-size:20px; text-transform:uppercase; padding:0; }
 .menu a  { color:#FFF; border-right:6px solid #F88A37; display:block; margin:0; padding:0 14px; }
 .menu a:hover { text-decoration:underline; }
 

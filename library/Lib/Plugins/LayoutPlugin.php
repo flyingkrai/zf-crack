@@ -78,7 +78,7 @@ class Lib_Plugins_LayoutPlugin extends Zend_Controller_Plugin_Abstract
 
         $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/jquery-1.6.2.min.js'));
         //        $view->headScript()->appendFile('/scripts/dd_belatedpng.js');
-        //        $view->headScript()->appendFile('/scripts/modernizr-2.0.6.min.js');
+        $view->headScript()->appendFile($urlHelper->baseUrl('public/scripts/modernizr-2.0.6.min.js'));
     }
 
 }
